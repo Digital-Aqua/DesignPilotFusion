@@ -1,0 +1,14 @@
+{
+  "autodeskProduct": "Fusion",
+  "type": "addin",
+  "id": "",
+  "author": "Digital Aqua Pty Ltd",
+  "description": {
+    "": "An open-source AI-powered CAD assistant for AutoDesk Fusion."
+  },
+  "version": "${BUILD_VERSION}",
+  "runOnStartup": ${NOT_DEBUG},
+  "supportedOS": "windows|mac",
+  "editEnabled": ${IS_DEBUG},
+  "iconFilename": "AddInIcon.svg"
+}
