@@ -29,15 +29,20 @@
 ### Manual Install (Zip File)
 
 1. Download the latest release from the [releases page](https://github.com/Digital-Aqua/DesignPilotFusion/releases).
+
 2. Extract the zip file to a location of your choice.
+
 3. Open Fusion and go to **Utilities** Tab &rarr; **Scripts and Add-Ins** &rarr; **Add-Ins** Tab &rarr; **My Add-Ins** &rarr; **+**
+
 4. Select the folder where you extracted the zip file.
+
 5. Repeat this process to update when new versions are released.
 
 
-### Manual Install (Git Repo)
+### Manual Build & Install (Git Repo)
 
 1. Open a terminal in the folder where you want to clone the repository.
+
 2. Run:
 ```bash
 git clone \
@@ -46,27 +51,25 @@ git clone \
     --recurse-submodules  \
     https://github.com/Digital-Aqua/DesignPilotFusion.git
 ```
-3. Open Fusion and go to *Utilities* &rarr; *Add-Ins* &rarr; *Add-Ins* Tab &rarr; *My Add-Ins* &rarr; **+**.
-4. Select the folder where you cloned the repository.
+*If you like to live dangerously, change the branch to `main` to get the latest development version.*
 
-To update to the latest release version, run:
+3. Set up your development environment with the command:
 ```bash
-git pull
+./build.sh --dev-setup
+```
+This will detect your Fusion installation and copy autocompletion files for your IDE.
+
+4. Build the add-in to the repo's `.build` subfolder with the command:
+```bash
+./build.sh
 ```
 
+5. Open Fusion and go to **Utilities** &rarr; **Scripts and Add-Ins** &rarr; **Add-Ins** Tab &rarr; **My Add-Ins** &rarr; **+**.
 
-### Latest Development Version (Git Repo)
+6. Select the folder `<repo>/.build/DesignPilotFusion`.
 
-Follow the manual install instructions above, but use the `main` branch instead of the `release` branch:
-```bash
-git clone \
-    --branch main \
-    --depth 1 \
-    --recurse-submodules \
-    https://github.com/Digital-Aqua/DesignPilotFusion.git
-```
-
-To update to the latest development version, run:
+To update to the latest version, run:
 ```bash
 git pull
+./build.sh --clean
 ```

@@ -4,5 +4,6 @@ dictionaryDefinitions: []
 dictionaries: []
 words:
   - addin
+  - levelno
 ignoreWords: []
 import: []

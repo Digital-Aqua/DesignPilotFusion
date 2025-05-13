@@ -5,18 +5,16 @@ from designpilot import DpApp
 import adsk.core
 
 
-_log_map : dict[logging.Level, adsk.core.LogLevels] = {
-    logging.DEBUG: adsk.core.LogLevels.TraceLogLevel,
-    logging.DEBUG: adsk.core.LogLevels.DebugLogLevel,
+_log_map : dict[int, adsk.core.LogLevels] = {
+    logging.DEBUG: adsk.core.LogLevels.InfoLogLevel,
     logging.INFO: adsk.core.LogLevels.InfoLogLevel,
     logging.WARNING: adsk.core.LogLevels.WarningLogLevel,
     logging.ERROR: adsk.core.LogLevels.ErrorLogLevel,
-    logging.CRITICAL: adsk.core.LogLevels.FatalLogLevel,
+    logging.CRITICAL: adsk.core.LogLevels.ErrorLogLevel,
 }
 
 
-_Context = Any
-_ContextCallable = Callable[[_Context], None]
+_ContextCallable = Callable[[str], None]
 
 
 class FusionDpApp(DpApp):
@@ -47,18 +45,20 @@ class FusionDpApp(DpApp):
         self._log.addFilter(self._fusion_log)
 
 
-    def fusion_run(self, context: _Context) -> None:
+    def fusion_run(self, context: str) -> None:
         try:
             # create a task runner and enqueue 'self.run()'
             raise NotImplementedError("TODO")
         except Exception as e:
+            e.add_note(f"Context: {context}")
             self._log.error(f"Error in fusion_run: {e}", exc_info=True)
     
 
-    def fusion_stop(self, context: _Context) -> None:
+    def fusion_stop(self, context: str) -> None:
         try:
             self.stop()
         except Exception as e:
+            e.add_note(f"Context: {context}")
             self._log.error(f"Error in fusion_stop: {e}", exc_info=True)
 
 
