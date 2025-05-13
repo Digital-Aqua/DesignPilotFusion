@@ -22,7 +22,6 @@ for ARG in "$@"; do
             ;;
         --dev-setup)
             DO_BUILD=false
-            DO_ZIP=false
             DO_DEV_SETUP=true
             ;;
         --zip)
@@ -183,10 +182,10 @@ function build() {
     cp "${SOURCE_DIR}/${ADDIN_NAME}.py" "${ADDIN_DIR}"
     cp "${SOURCE_DIR}/config.py" "${ADDIN_DIR}"
 
-    echo_task "Copying libraries."
-    cp -r "${SOURCE_DIR}/Packages" "${ADDIN_DIR}/lib"
+    echo_task "Copying packages."
+    cp -r "${SOURCE_DIR}/Packages" "${ADDIN_DIR}/Packages"
 
-    # TODO: get pip modules and copy them into the add-in 'lib' directory
+    # TODO: get pip modules and copy them into the add-in 'Packages' directory
 
     echo_task "Build complete."
 
@@ -198,10 +197,9 @@ function bundle() {
     zip -r "${BUILD_DIR}/${ADDIN_NAME}.zip" "${ADDIN_DIR}" | background
 }
 
-
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
-    [ "${DO_DEV_SETUP}" ] && dev_setup || :
-    [ "${DO_CLEAN}" ] && clean || :
-    [ "${DO_BUILD}" ] && build || :
-    [ "${DO_ZIP}" ] && bundle || :
+    $DO_DEV_SETUP && dev_setup || :
+    $DO_CLEAN && clean || :
+    $DO_BUILD && build || :
+    $DO_ZIP && bundle || :
 fi

@@ -5,6 +5,9 @@ from designpilot import DpApp
 import adsk.core
 
 
+__all__ = [ "FusionDpApp" ]
+
+
 _log_map : dict[int, adsk.core.LogLevels] = {
     logging.DEBUG: adsk.core.LogLevels.InfoLogLevel,
     logging.INFO: adsk.core.LogLevels.InfoLogLevel,
@@ -22,12 +25,6 @@ class FusionDpApp(DpApp):
     Patches DpApp into a Fusion environment.
     """
 
-    @classmethod
-    def create(cls) -> tuple[_ContextCallable, _ContextCallable]:
-        instance = cls()
-        return instance.fusion_run, instance.fusion_stop
-
-
     def __init__(self, **kwargs: Any):
         with open(os.path.join(
             os.path.dirname(__file__),
@@ -35,7 +32,7 @@ class FusionDpApp(DpApp):
         ), "r") as f:
             manifest = json.load(f)
         super().__init__(
-            debug = manifest["debug"],
+            debug = "-debug" in manifest["version"],
             **kwargs
         )
 

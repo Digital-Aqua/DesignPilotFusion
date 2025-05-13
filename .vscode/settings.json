@@ -1,10 +1,12 @@
 {
     "python.analysis.typeCheckingMode": "strict",
     "python.autoComplete.extraPaths": [
-        "${workspaceFolder}/.cache/defs"
+        "${workspaceFolder}/.cache/defs",
+        "${workspaceFolder}/Source/Packages"
     ],
     "python.analysis.extraPaths": [
-        "${workspaceFolder}/.cache/defs"
+        "${workspaceFolder}/.cache/defs",
+        "${workspaceFolder}/Source/Packages"
     ],
     "python.defaultInterpreterPath":
         "${workspaceFolder}/python.sh"
