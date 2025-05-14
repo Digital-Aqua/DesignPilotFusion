@@ -21,6 +21,6 @@ class DpApp(object):
         raise NotImplementedError("TODO")
 
 
-    def stop(self) -> None:
+    async def stop(self) -> None:
         raise NotImplementedError("TODO")
 
