@@ -4,7 +4,11 @@ dictionaryDefinitions: []
 dictionaries: []
 words:
   - addin
+  - asyncloop
   - designpilot
+  - dpapp
+  - fromlist
+  - fusionbase
   - levelno
 ignoreWords: []
 import: []
