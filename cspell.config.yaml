@@ -7,8 +7,14 @@ words:
   - asyncloop
   - designpilot
   - dpapp
+  - fcompute
+  - fdefault
+  - fdel
+  - Fireable
+  - fref
   - fromlist
   - fusionbase
   - levelno
+  - onclick
 ignoreWords: []
 import: []

@@ -1,5 +1,4 @@
 {
-    "python.analysis.typeCheckingMode": "strict",
     "python.autoComplete.extraPaths": [
         "${workspaceFolder}/.cache/defs",
         "${workspaceFolder}/Source/Packages"
@@ -9,5 +8,10 @@
         "${workspaceFolder}/Source/Packages"
     ],
     "python.defaultInterpreterPath":
-        "${workspaceFolder}/python.sh"
+        "${workspaceFolder}/python.sh",
+        "python.testing.pytestArgs": [
+            "Tests"
+        ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true
 }
