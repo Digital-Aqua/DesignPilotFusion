@@ -1,0 +1,3 @@
+[submodule "External/rxprop"]
+	path = External/rxprop
+	url = https://github.com/Digital-Aqua/rxprop.git
