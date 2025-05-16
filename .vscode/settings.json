@@ -1,10 +1,12 @@
 {
     "python.autoComplete.extraPaths": [
         "${workspaceFolder}/.cache/defs",
+        "${workspaceFolder}/External/rxprop/Source",
         "${workspaceFolder}/Source/Packages"
     ],
     "python.analysis.extraPaths": [
         "${workspaceFolder}/.cache/defs",
+        "${workspaceFolder}/External/rxprop/Source",
         "${workspaceFolder}/Source/Packages"
     ],
     "python.defaultInterpreterPath":

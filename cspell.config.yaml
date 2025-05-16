@@ -4,6 +4,7 @@ dictionaryDefinitions: []
 dictionaries: []
 words:
   - addin
+  - asyncio
   - asyncloop
   - designpilot
   - dpapp
@@ -16,5 +17,10 @@ words:
   - fusionbase
   - levelno
   - onclick
+  - pyright
+  - pytest
+  - pythonpath
+  - rxprop
+  - setuptools
 ignoreWords: []
 import: []
