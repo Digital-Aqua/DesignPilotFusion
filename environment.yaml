@@ -1,0 +1,10 @@
+name: designpilot-dev
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python=3.12
+  - zip
+  - pip
+  - pip:
+    - -e .

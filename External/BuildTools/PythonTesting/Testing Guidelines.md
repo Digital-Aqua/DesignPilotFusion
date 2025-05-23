@@ -1,8 +1,3 @@
----
-description: 
-globs: **/Tests/**/*.py,**/Tests/**/PLAN.md
-alwaysApply: false
----
 # Python Testing Guide
 
 1. **Kick off with a “Test Plan” doc**
@@ -64,7 +59,7 @@ alwaysApply: false
 
 11. **Static typing failures are test failures**
 
-   * If a static typing test is not present for the package (`test_typing.py`), create it based on this template: [test_typing_template.py](mdc:.cursor/rules/test_typing_template.py)
+   * If a static typing test is not present for the package (`test_typing.py`), create it based on `./test_typing_template.py` (relative to this document).
    * The linter is **pylance**, and `test_typing.py` uses **pyright**.
    * You may explicitly ignore linter errors by appending `# type: ignore` to lines where non-strict typing is intended.
 
@@ -76,5 +71,8 @@ alwaysApply: false
 
 13. **Inspect code via `stubs.sh`**
 
-   * Your terminal has access to the script [stubs.sh](mdc:stubs.sh). Run it using `./stubs.sh package_name`. This will give you the public members of the package, along with their type signatures and docstrings.
+   * Your terminal has access to the script `./stubs.sh` (relative to this document). Run it using `./stubs.sh package_name`. This will give you the public members of the package, along with their type signatures and docstrings.
 
+14. **Use your code interpreter**
+
+   * You have access to a Python interpreter that you can use to interact directly with the source code. You may use this to help debug issues.

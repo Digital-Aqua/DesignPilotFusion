@@ -1,0 +1,3599 @@
+{
+  "rxprop": {
+    "docstring": {
+      "endlineno": 3,
+      "lineno": 1,
+      "value": "Super-simple reactive properties."
+    },
+    "filepath": "/mnt/c/Users/Aaron/Documents/Digital Aqua/DesignPilotFusion/External/rxprop/Source/rxprop/__init__.py",
+    "kind": "module",
+    "labels": [],
+    "members": {
+      "__all__": {
+        "endlineno": 16,
+        "kind": "attribute",
+        "labels": [
+          "module-attribute"
+        ],
+        "lineno": 11,
+        "members": {},
+        "name": "__all__",
+        "value": {
+          "cls": "ExprList",
+          "elements": [
+            "'value'",
+            "'computed'",
+            "'reactive_property'",
+            "'watch'"
+          ]
+        }
+      },
+      "__version__": {
+        "endlineno": 4,
+        "kind": "attribute",
+        "labels": [
+          "module-attribute"
+        ],
+        "lineno": 4,
+        "members": {},
+        "name": "__version__",
+        "value": "'0.1.0'"
+      },
+      "computed": {
+        "endlineno": 7,
+        "kind": "alias",
+        "lineno": 7,
+        "name": "computed",
+        "target_path": "rxprop.computed_property.computed"
+      },
+      "computed_property": {
+        "filepath": "/mnt/c/Users/Aaron/Documents/Digital Aqua/DesignPilotFusion/External/rxprop/Source/rxprop/computed_property.py",
+        "kind": "module",
+        "labels": [],
+        "members": {
+          "Any": {
+            "endlineno": 2,
+            "kind": "alias",
+            "lineno": 2,
+            "name": "Any",
+            "target_path": "typing.Any"
+          },
+          "CachedPropertyMixin": {
+            "bases": [
+              {
+                "cls": "ExprSubscript",
+                "left": {
+                  "cls": "ExprName",
+                  "name": "ReactivePropertyMixin"
+                },
+                "slice": {
+                  "cls": "ExprTuple",
+                  "elements": [
+                    {
+                      "cls": "ExprName",
+                      "name": "_TClass"
+                    },
+                    {
+                      "cls": "ExprName",
+                      "name": "_TValue"
+                    }
+                  ],
+                  "implicit": true
+                }
+              }
+            ],
+            "decorators": [],
+            "docstring": {
+              "endlineno": 53,
+              "lineno": 50,
+              "value": "A reactive property with a cache and a dirty indicator.\nPrevents re-computation if the property is not dirty (very important!)"
+            },
+            "endlineno": 80,
+            "kind": "class",
+            "labels": [],
+            "lineno": 49,
+            "members": {
+              "__init__": {
+                "decorators": [],
+                "endlineno": 57,
+                "kind": "function",
+                "labels": [],
+                "lineno": 54,
+                "members": {},
+                "name": "__init__",
+                "parameters": [
+                  {
+                    "annotation": null,
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "self"
+                  },
+                  {
+                    "annotation": {
+                      "cls": "ExprName",
+                      "name": "Any"
+                    },
+                    "default": "{}",
+                    "kind": "variadic keyword",
+                    "name": "kwargs"
+                  }
+                ],
+                "returns": null
+              },
+              "_dirty": {
+                "endlineno": 56,
+                "kind": "attribute",
+                "labels": [
+                  "instance-attribute"
+                ],
+                "lineno": 56,
+                "members": {},
+                "name": "_dirty",
+                "value": {
+                  "arguments": [],
+                  "cls": "ExprCall",
+                  "function": {
+                    "cls": "ExprSubscript",
+                    "left": {
+                      "cls": "ExprName",
+                      "name": "WeakKeyDictionary"
+                    },
+                    "slice": {
+                      "cls": "ExprTuple",
+                      "elements": [
+                        {
+                          "cls": "ExprName",
+                          "name": "_TClass"
+                        },
+                        {
+                          "cls": "ExprAttribute",
+                          "values": [
+                            {
+                              "cls": "ExprName",
+                              "name": "asyncio"
+                            },
+                            {
+                              "cls": "ExprName",
+                              "name": "Event"
+                            }
+                          ]
+                        }
+                      ],
+                      "implicit": true
+                    }
+                  }
+                }
+              },
+              "_get": {
+                "decorators": [],
+                "endlineno": 80,
+                "kind": "function",
+                "labels": [],
+                "lineno": 71,
+                "members": {},
+                "name": "_get",
+                "parameters": [
+                  {
+                    "annotation": null,
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "self"
+                  },
+                  {
+                    "annotation": {
+                      "cls": "ExprName",
+                      "name": "_TClass"
+                    },
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "instance"
+                  }
+                ],
+                "returns": {
+                  "cls": "ExprName",
+                  "name": "_TValue"
+                }
+              },
+              "_is_dirty": {
+                "decorators": [],
+                "endlineno": 69,
+                "kind": "function",
+                "labels": [],
+                "lineno": 59,
+                "members": {},
+                "name": "_is_dirty",
+                "parameters": [
+                  {
+                    "annotation": null,
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "self"
+                  },
+                  {
+                    "annotation": {
+                      "cls": "ExprName",
+                      "name": "_TClass"
+                    },
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "instance"
+                  }
+                ],
+                "returns": {
+                  "cls": "ExprName",
+                  "name": "bool"
+                }
+              },
+              "_values": {
+                "endlineno": 57,
+                "kind": "attribute",
+                "labels": [
+                  "instance-attribute"
+                ],
+                "lineno": 57,
+                "members": {},
+                "name": "_values",
+                "value": {
+                  "arguments": [],
+                  "cls": "ExprCall",
+                  "function": {
+                    "cls": "ExprSubscript",
+                    "left": {
+                      "cls": "ExprName",
+                      "name": "WeakKeyDictionary"
+                    },
+                    "slice": {
+                      "cls": "ExprTuple",
+                      "elements": [
+                        {
+                          "cls": "ExprName",
+                          "name": "_TClass"
+                        },
+                        {
+                          "cls": "ExprName",
+                          "name": "_TValue"
+                        }
+                      ],
+                      "implicit": true
+                    }
+                  }
+                }
+              }
+            },
+            "name": "CachedPropertyMixin"
+          },
+          "ComputedProperty": {
+            "bases": [
+              {
+                "cls": "ExprSubscript",
+                "left": {
+                  "cls": "ExprName",
+                  "name": "CachedPropertyMixin"
+                },
+                "slice": {
+                  "cls": "ExprTuple",
+                  "elements": [
+                    {
+                      "cls": "ExprName",
+                      "name": "_TClass"
+                    },
+                    {
+                      "cls": "ExprName",
+                      "name": "_TValue"
+                    }
+                  ],
+                  "implicit": true
+                }
+              },
+              {
+                "cls": "ExprSubscript",
+                "left": {
+                  "cls": "ExprName",
+                  "name": "ComputedPropertyMixin"
+                },
+                "slice": {
+                  "cls": "ExprTuple",
+                  "elements": [
+                    {
+                      "cls": "ExprName",
+                      "name": "_TClass"
+                    },
+                    {
+                      "cls": "ExprName",
+                      "name": "_TValue"
+                    }
+                  ],
+                  "implicit": true
+                }
+              }
+            ],
+            "decorators": [],
+            "docstring": {
+              "endlineno": 89,
+              "lineno": 87,
+              "value": "A reactive property backed by a compute function."
+            },
+            "endlineno": 89,
+            "kind": "class",
+            "labels": [],
+            "lineno": 83,
+            "members": {},
+            "name": "ComputedProperty"
+          },
+          "ComputedPropertyMixin": {
+            "bases": [
+              {
+                "cls": "ExprSubscript",
+                "left": {
+                  "cls": "ExprName",
+                  "name": "ReactivePropertyMixin"
+                },
+                "slice": {
+                  "cls": "ExprTuple",
+                  "elements": [
+                    {
+                      "cls": "ExprName",
+                      "name": "_TClass"
+                    },
+                    {
+                      "cls": "ExprName",
+                      "name": "_TValue"
+                    }
+                  ],
+                  "implicit": true
+                }
+              }
+            ],
+            "decorators": [],
+            "docstring": {
+              "endlineno": 23,
+              "lineno": 17,
+              "value": "A reactive property backed by a compute function.\n\nReactiveProperties that are called within the compute function are\nautomatically added as dependencies, triggering notification\n(and typically re-computation) when they change."
+            },
+            "endlineno": 46,
+            "kind": "class",
+            "labels": [],
+            "lineno": 14,
+            "members": {
+              "__init__": {
+                "decorators": [],
+                "endlineno": 27,
+                "kind": "function",
+                "labels": [],
+                "lineno": 24,
+                "members": {},
+                "name": "__init__",
+                "parameters": [
+                  {
+                    "annotation": null,
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "self"
+                  },
+                  {
+                    "annotation": {
+                      "cls": "ExprSubscript",
+                      "left": {
+                        "cls": "ExprName",
+                        "name": "Getter"
+                      },
+                      "slice": {
+                        "cls": "ExprTuple",
+                        "elements": [
+                          {
+                            "cls": "ExprName",
+                            "name": "_TClass"
+                          },
+                          {
+                            "cls": "ExprName",
+                            "name": "_TValue"
+                          }
+                        ],
+                        "implicit": true
+                      }
+                    },
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "fcompute"
+                  },
+                  {
+                    "annotation": {
+                      "cls": "ExprName",
+                      "name": "Any"
+                    },
+                    "default": "{}",
+                    "kind": "variadic keyword",
+                    "name": "kwargs"
+                  }
+                ],
+                "returns": null
+              },
+              "_deps": {
+                "endlineno": 27,
+                "kind": "attribute",
+                "labels": [
+                  "instance-attribute"
+                ],
+                "lineno": 27,
+                "members": {},
+                "name": "_deps",
+                "value": {
+                  "arguments": [],
+                  "cls": "ExprCall",
+                  "function": {
+                    "cls": "ExprSubscript",
+                    "left": {
+                      "cls": "ExprName",
+                      "name": "WeakKeyDictionary"
+                    },
+                    "slice": {
+                      "cls": "ExprTuple",
+                      "elements": [
+                        {
+                          "cls": "ExprName",
+                          "name": "_TClass"
+                        },
+                        {
+                          "cls": "ExprSubscript",
+                          "left": {
+                            "cls": "ExprName",
+                            "name": "set"
+                          },
+                          "slice": {
+                            "cls": "ExprName",
+                            "name": "Notifier"
+                          }
+                        }
+                      ],
+                      "implicit": true
+                    }
+                  }
+                }
+              },
+              "_fcompute": {
+                "endlineno": 26,
+                "kind": "attribute",
+                "labels": [
+                  "instance-attribute"
+                ],
+                "lineno": 26,
+                "members": {},
+                "name": "_fcompute",
+                "value": {
+                  "cls": "ExprName",
+                  "name": "fcompute"
+                }
+              },
+              "_get": {
+                "decorators": [],
+                "endlineno": 46,
+                "kind": "function",
+                "labels": [],
+                "lineno": 29,
+                "members": {},
+                "name": "_get",
+                "parameters": [
+                  {
+                    "annotation": null,
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "self"
+                  },
+                  {
+                    "annotation": {
+                      "cls": "ExprName",
+                      "name": "_TClass"
+                    },
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "instance"
+                  }
+                ],
+                "returns": {
+                  "cls": "ExprName",
+                  "name": "_TValue"
+                }
+              }
+            },
+            "name": "ComputedPropertyMixin"
+          },
+          "Getter": {
+            "endlineno": 7,
+            "kind": "alias",
+            "lineno": 7,
+            "name": "Getter",
+            "target_path": "rxprop.typed_property.Getter"
+          },
+          "Notifier": {
+            "endlineno": 5,
+            "kind": "alias",
+            "lineno": 5,
+            "name": "Notifier",
+            "target_path": "rxprop.notifier.Notifier"
+          },
+          "ReactivePropertyMixin": {
+            "endlineno": 6,
+            "kind": "alias",
+            "lineno": 6,
+            "name": "ReactivePropertyMixin",
+            "target_path": "rxprop.reactive_property.ReactivePropertyMixin"
+          },
+          "TypeVar": {
+            "endlineno": 2,
+            "kind": "alias",
+            "lineno": 2,
+            "name": "TypeVar",
+            "target_path": "typing.TypeVar"
+          },
+          "WeakKeyDictionary": {
+            "endlineno": 3,
+            "kind": "alias",
+            "lineno": 3,
+            "name": "WeakKeyDictionary",
+            "target_path": "weakref.WeakKeyDictionary"
+          },
+          "_TClass": {
+            "endlineno": 10,
+            "kind": "attribute",
+            "labels": [
+              "module-attribute"
+            ],
+            "lineno": 10,
+            "members": {},
+            "name": "_TClass",
+            "value": {
+              "arguments": [
+                "'_TClass'"
+              ],
+              "cls": "ExprCall",
+              "function": {
+                "cls": "ExprName",
+                "name": "TypeVar"
+              }
+            }
+          },
+          "_TValue": {
+            "endlineno": 11,
+            "kind": "attribute",
+            "labels": [
+              "module-attribute"
+            ],
+            "lineno": 11,
+            "members": {},
+            "name": "_TValue",
+            "value": {
+              "arguments": [
+                "'_TValue'"
+              ],
+              "cls": "ExprCall",
+              "function": {
+                "cls": "ExprName",
+                "name": "TypeVar"
+              }
+            }
+          },
+          "asyncio": {
+            "endlineno": 1,
+            "kind": "alias",
+            "lineno": 1,
+            "name": "asyncio",
+            "target_path": "asyncio"
+          },
+          "computed": {
+            "decorators": [],
+            "docstring": {
+              "endlineno": 101,
+              "lineno": 95,
+              "value": "Decorator that creates a reactive property backed by a compute function.\n\nReactiveProperties that are called within the compute function are\nautomatically added as dependencies, triggering notification\n(and typically re-computation) when they change."
+            },
+            "endlineno": 102,
+            "kind": "function",
+            "labels": [],
+            "lineno": 92,
+            "members": {},
+            "name": "computed",
+            "parameters": [
+              {
+                "annotation": {
+                  "cls": "ExprSubscript",
+                  "left": {
+                    "cls": "ExprName",
+                    "name": "Getter"
+                  },
+                  "slice": {
+                    "cls": "ExprTuple",
+                    "elements": [
+                      {
+                        "cls": "ExprName",
+                        "name": "_TClass"
+                      },
+                      {
+                        "cls": "ExprName",
+                        "name": "_TValue"
+                      }
+                    ],
+                    "implicit": true
+                  }
+                },
+                "default": null,
+                "kind": "positional or keyword",
+                "name": "fcompute"
+              }
+            ],
+            "returns": {
+              "cls": "ExprSubscript",
+              "left": {
+                "cls": "ExprName",
+                "name": "ComputedProperty"
+              },
+              "slice": {
+                "cls": "ExprTuple",
+                "elements": [
+                  {
+                    "cls": "ExprName",
+                    "name": "_TClass"
+                  },
+                  {
+                    "cls": "ExprName",
+                    "name": "_TValue"
+                  }
+                ],
+                "implicit": true
+              }
+            }
+          },
+          "listen_for_dependencies": {
+            "endlineno": 6,
+            "kind": "alias",
+            "lineno": 6,
+            "name": "listen_for_dependencies",
+            "target_path": "rxprop.reactive_property.listen_for_dependencies"
+          }
+        },
+        "name": "computed_property"
+      },
+      "notifier": {
+        "filepath": "/mnt/c/Users/Aaron/Documents/Digital Aqua/DesignPilotFusion/External/rxprop/Source/rxprop/notifier.py",
+        "kind": "module",
+        "labels": [],
+        "members": {
+          "Action": {
+            "endlineno": 7,
+            "kind": "attribute",
+            "labels": [
+              "module-attribute"
+            ],
+            "lineno": 7,
+            "members": {},
+            "name": "Action",
+            "value": {
+              "cls": "ExprSubscript",
+              "left": {
+                "cls": "ExprName",
+                "name": "Callable"
+              },
+              "slice": {
+                "cls": "ExprTuple",
+                "elements": [
+                  {
+                    "cls": "ExprList",
+                    "elements": []
+                  },
+                  "None"
+                ],
+                "implicit": true
+              }
+            }
+          },
+          "Callable": {
+            "endlineno": 3,
+            "kind": "alias",
+            "lineno": 3,
+            "name": "Callable",
+            "target_path": "typing.Callable"
+          },
+          "Iterator": {
+            "endlineno": 3,
+            "kind": "alias",
+            "lineno": 3,
+            "name": "Iterator",
+            "target_path": "typing.Iterator"
+          },
+          "Notifier": {
+            "bases": [],
+            "decorators": [],
+            "docstring": {
+              "endlineno": 13,
+              "lineno": 11,
+              "value": "A source of notification events."
+            },
+            "endlineno": 48,
+            "kind": "class",
+            "labels": [],
+            "lineno": 10,
+            "members": {
+              "__init__": {
+                "decorators": [],
+                "endlineno": 16,
+                "kind": "function",
+                "labels": [],
+                "lineno": 14,
+                "members": {},
+                "name": "__init__",
+                "parameters": [
+                  {
+                    "annotation": null,
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "self"
+                  }
+                ],
+                "returns": null
+              },
+              "_handlers": {
+                "annotation": {
+                  "cls": "ExprSubscript",
+                  "left": {
+                    "cls": "ExprName",
+                    "name": "dict"
+                  },
+                  "slice": {
+                    "cls": "ExprTuple",
+                    "elements": [
+                      {
+                        "cls": "ExprName",
+                        "name": "Action"
+                      },
+                      {
+                        "cls": "ExprName",
+                        "name": "int"
+                      }
+                    ],
+                    "implicit": true
+                  }
+                },
+                "endlineno": 16,
+                "kind": "attribute",
+                "labels": [
+                  "instance-attribute"
+                ],
+                "lineno": 16,
+                "members": {},
+                "name": "_handlers",
+                "value": {
+                  "arguments": [],
+                  "cls": "ExprCall",
+                  "function": {
+                    "cls": "ExprName",
+                    "name": "dict"
+                  }
+                }
+              },
+              "add_handler": {
+                "decorators": [],
+                "endlineno": 37,
+                "kind": "function",
+                "labels": [],
+                "lineno": 35,
+                "members": {},
+                "name": "add_handler",
+                "parameters": [
+                  {
+                    "annotation": null,
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "self"
+                  },
+                  {
+                    "annotation": {
+                      "cls": "ExprName",
+                      "name": "Action"
+                    },
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "handler"
+                  }
+                ],
+                "returns": "None"
+              },
+              "event_context": {
+                "decorators": [
+                  {
+                    "endlineno": 26,
+                    "lineno": 26,
+                    "value": {
+                      "cls": "ExprName",
+                      "name": "contextmanager"
+                    }
+                  }
+                ],
+                "docstring": {
+                  "endlineno": 30,
+                  "lineno": 28,
+                  "value": "Provides an `asyncio.Event` that is set when this notifier is fired."
+                },
+                "endlineno": 33,
+                "kind": "function",
+                "labels": [],
+                "lineno": 26,
+                "members": {},
+                "name": "event_context",
+                "parameters": [
+                  {
+                    "annotation": null,
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "self"
+                  }
+                ],
+                "returns": {
+                  "cls": "ExprSubscript",
+                  "left": {
+                    "cls": "ExprName",
+                    "name": "Iterator"
+                  },
+                  "slice": {
+                    "cls": "ExprAttribute",
+                    "values": [
+                      {
+                        "cls": "ExprName",
+                        "name": "asyncio"
+                      },
+                      {
+                        "cls": "ExprName",
+                        "name": "Event"
+                      }
+                    ]
+                  }
+                }
+              },
+              "fire": {
+                "decorators": [],
+                "endlineno": 48,
+                "kind": "function",
+                "labels": [],
+                "lineno": 44,
+                "members": {},
+                "name": "fire",
+                "parameters": [
+                  {
+                    "annotation": null,
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "self"
+                  }
+                ],
+                "returns": "None"
+              },
+              "handler_context": {
+                "decorators": [
+                  {
+                    "endlineno": 18,
+                    "lineno": 18,
+                    "value": {
+                      "cls": "ExprName",
+                      "name": "contextmanager"
+                    }
+                  }
+                ],
+                "endlineno": 24,
+                "kind": "function",
+                "labels": [],
+                "lineno": 18,
+                "members": {},
+                "name": "handler_context",
+                "parameters": [
+                  {
+                    "annotation": null,
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "self"
+                  },
+                  {
+                    "annotation": {
+                      "cls": "ExprName",
+                      "name": "Action"
+                    },
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "handler"
+                  }
+                ],
+                "returns": {
+                  "cls": "ExprSubscript",
+                  "left": {
+                    "cls": "ExprName",
+                    "name": "Iterator"
+                  },
+                  "slice": "None"
+                }
+              },
+              "remove_handler": {
+                "decorators": [],
+                "endlineno": 42,
+                "kind": "function",
+                "labels": [],
+                "lineno": 39,
+                "members": {},
+                "name": "remove_handler",
+                "parameters": [
+                  {
+                    "annotation": null,
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "self"
+                  },
+                  {
+                    "annotation": {
+                      "cls": "ExprName",
+                      "name": "Action"
+                    },
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "handler"
+                  }
+                ],
+                "returns": "None"
+              }
+            },
+            "name": "Notifier"
+          },
+          "asyncio": {
+            "endlineno": 1,
+            "kind": "alias",
+            "lineno": 1,
+            "name": "asyncio",
+            "target_path": "asyncio"
+          },
+          "contextmanager": {
+            "endlineno": 2,
+            "kind": "alias",
+            "lineno": 2,
+            "name": "contextmanager",
+            "target_path": "contextlib.contextmanager"
+          }
+        },
+        "name": "notifier"
+      },
+      "reactive_property": {
+        "filepath": "/mnt/c/Users/Aaron/Documents/Digital Aqua/DesignPilotFusion/External/rxprop/Source/rxprop/reactive_property.py",
+        "kind": "module",
+        "labels": [],
+        "members": {
+          "Any": {
+            "endlineno": 3,
+            "kind": "alias",
+            "lineno": 3,
+            "name": "Any",
+            "target_path": "typing.Any"
+          },
+          "AsyncIterator": {
+            "endlineno": 3,
+            "kind": "alias",
+            "lineno": 3,
+            "name": "AsyncIterator",
+            "target_path": "typing.AsyncIterator"
+          },
+          "Getter": {
+            "endlineno": 9,
+            "kind": "alias",
+            "lineno": 7,
+            "name": "Getter",
+            "target_path": "rxprop.typed_property.Getter"
+          },
+          "GetterMixin": {
+            "endlineno": 9,
+            "kind": "alias",
+            "lineno": 7,
+            "name": "GetterMixin",
+            "target_path": "rxprop.typed_property.GetterMixin"
+          },
+          "Iterator": {
+            "endlineno": 3,
+            "kind": "alias",
+            "lineno": 3,
+            "name": "Iterator",
+            "target_path": "typing.Iterator"
+          },
+          "Notifier": {
+            "endlineno": 6,
+            "kind": "alias",
+            "lineno": 6,
+            "name": "Notifier",
+            "target_path": "rxprop.notifier.Notifier"
+          },
+          "ReactiveProperty": {
+            "bases": [
+              {
+                "cls": "ExprSubscript",
+                "left": {
+                  "cls": "ExprName",
+                  "name": "ReactivePropertyMixin"
+                },
+                "slice": {
+                  "cls": "ExprTuple",
+                  "elements": [
+                    {
+                      "cls": "ExprName",
+                      "name": "_TClass"
+                    },
+                    {
+                      "cls": "ExprName",
+                      "name": "_TValue"
+                    }
+                  ],
+                  "implicit": true
+                }
+              },
+              {
+                "cls": "ExprSubscript",
+                "left": {
+                  "cls": "ExprName",
+                  "name": "GetterMixin"
+                },
+                "slice": {
+                  "cls": "ExprTuple",
+                  "elements": [
+                    {
+                      "cls": "ExprName",
+                      "name": "_TClass"
+                    },
+                    {
+                      "cls": "ExprName",
+                      "name": "_TValue"
+                    }
+                  ],
+                  "implicit": true
+                }
+              },
+              {
+                "cls": "ExprSubscript",
+                "left": {
+                  "cls": "ExprName",
+                  "name": "SetterMixin"
+                },
+                "slice": {
+                  "cls": "ExprTuple",
+                  "elements": [
+                    {
+                      "cls": "ExprName",
+                      "name": "_TClass"
+                    },
+                    {
+                      "cls": "ExprName",
+                      "name": "_TValue"
+                    }
+                  ],
+                  "implicit": true
+                }
+              }
+            ],
+            "decorators": [],
+            "docstring": {
+              "endlineno": 104,
+              "lineno": 102,
+              "value": "A reactive property backed by a getter and setter."
+            },
+            "endlineno": 104,
+            "kind": "class",
+            "labels": [],
+            "lineno": 97,
+            "members": {},
+            "name": "ReactiveProperty"
+          },
+          "ReactivePropertyMixin": {
+            "bases": [
+              {
+                "cls": "ExprSubscript",
+                "left": {
+                  "cls": "ExprName",
+                  "name": "TypedProperty"
+                },
+                "slice": {
+                  "cls": "ExprTuple",
+                  "elements": [
+                    {
+                      "cls": "ExprName",
+                      "name": "_TClass"
+                    },
+                    {
+                      "cls": "ExprName",
+                      "name": "_TValue"
+                    }
+                  ],
+                  "implicit": true
+                }
+              }
+            ],
+            "decorators": [],
+            "docstring": {
+              "endlineno": 36,
+              "lineno": 32,
+              "value": "A mixin for reactive properties.\nProvides `observe_async` for change notification,\nand reports usage of the property to dependency tracking."
+            },
+            "endlineno": 94,
+            "kind": "class",
+            "labels": [],
+            "lineno": 31,
+            "members": {
+              "__init__": {
+                "decorators": [],
+                "endlineno": 39,
+                "kind": "function",
+                "labels": [],
+                "lineno": 37,
+                "members": {},
+                "name": "__init__",
+                "parameters": [
+                  {
+                    "annotation": null,
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "self"
+                  },
+                  {
+                    "annotation": {
+                      "cls": "ExprName",
+                      "name": "Any"
+                    },
+                    "default": "{}",
+                    "kind": "variadic keyword",
+                    "name": "kwargs"
+                  }
+                ],
+                "returns": null
+              },
+              "_get": {
+                "decorators": [],
+                "endlineno": 56,
+                "kind": "function",
+                "labels": [],
+                "lineno": 51,
+                "members": {},
+                "name": "_get",
+                "parameters": [
+                  {
+                    "annotation": null,
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "self"
+                  },
+                  {
+                    "annotation": {
+                      "cls": "ExprName",
+                      "name": "_TClass"
+                    },
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "instance"
+                  }
+                ],
+                "returns": {
+                  "cls": "ExprName",
+                  "name": "_TValue"
+                }
+              },
+              "_get_notifier": {
+                "decorators": [],
+                "docstring": {
+                  "endlineno": 46,
+                  "lineno": 42,
+                  "value": "Returns a notifier for the given instance.\nIf the notifier is not in the stash, a new notifier is created\nand added to the stash."
+                },
+                "endlineno": 49,
+                "kind": "function",
+                "labels": [],
+                "lineno": 41,
+                "members": {},
+                "name": "_get_notifier",
+                "parameters": [
+                  {
+                    "annotation": null,
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "self"
+                  },
+                  {
+                    "annotation": {
+                      "cls": "ExprName",
+                      "name": "_TClass"
+                    },
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "instance"
+                  }
+                ],
+                "returns": {
+                  "cls": "ExprName",
+                  "name": "Notifier"
+                }
+              },
+              "_notifiers": {
+                "endlineno": 39,
+                "kind": "attribute",
+                "labels": [
+                  "instance-attribute"
+                ],
+                "lineno": 39,
+                "members": {},
+                "name": "_notifiers",
+                "value": {
+                  "arguments": [],
+                  "cls": "ExprCall",
+                  "function": {
+                    "cls": "ExprSubscript",
+                    "left": {
+                      "cls": "ExprName",
+                      "name": "WeakKeyDictionary"
+                    },
+                    "slice": {
+                      "cls": "ExprTuple",
+                      "elements": [
+                        {
+                          "cls": "ExprName",
+                          "name": "_TClass"
+                        },
+                        {
+                          "cls": "ExprName",
+                          "name": "Notifier"
+                        }
+                      ],
+                      "implicit": true
+                    }
+                  }
+                }
+              },
+              "_set": {
+                "decorators": [],
+                "endlineno": 61,
+                "kind": "function",
+                "labels": [],
+                "lineno": 58,
+                "members": {},
+                "name": "_set",
+                "parameters": [
+                  {
+                    "annotation": null,
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "self"
+                  },
+                  {
+                    "annotation": {
+                      "cls": "ExprName",
+                      "name": "_TClass"
+                    },
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "instance"
+                  },
+                  {
+                    "annotation": {
+                      "cls": "ExprName",
+                      "name": "_TValue"
+                    },
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "value"
+                  }
+                ],
+                "returns": "None"
+              },
+              "watch_async": {
+                "decorators": [],
+                "docstring": {
+                  "endlineno": 69,
+                  "lineno": 64,
+                  "value": "Observes this property and yields new values when the property changes.\n\nNOT guaranteed to yield intermediate values if the property is set\nmultiple times in quick succession."
+                },
+                "endlineno": 94,
+                "kind": "function",
+                "labels": [
+                  "async"
+                ],
+                "lineno": 63,
+                "members": {},
+                "name": "watch_async",
+                "parameters": [
+                  {
+                    "annotation": null,
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "self"
+                  },
+                  {
+                    "annotation": {
+                      "cls": "ExprName",
+                      "name": "_TClass"
+                    },
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "instance"
+                  }
+                ],
+                "returns": {
+                  "cls": "ExprSubscript",
+                  "left": {
+                    "cls": "ExprName",
+                    "name": "AsyncIterator"
+                  },
+                  "slice": {
+                    "cls": "ExprName",
+                    "name": "_TValue"
+                  }
+                }
+              }
+            },
+            "name": "ReactivePropertyMixin"
+          },
+          "SetterMixin": {
+            "endlineno": 9,
+            "kind": "alias",
+            "lineno": 7,
+            "name": "SetterMixin",
+            "target_path": "rxprop.typed_property.SetterMixin"
+          },
+          "TypeVar": {
+            "endlineno": 9,
+            "kind": "alias",
+            "lineno": 7,
+            "name": "TypeVar",
+            "target_path": "rxprop.typed_property.TypeVar"
+          },
+          "TypedProperty": {
+            "endlineno": 9,
+            "kind": "alias",
+            "lineno": 7,
+            "name": "TypedProperty",
+            "target_path": "rxprop.typed_property.TypedProperty"
+          },
+          "WeakKeyDictionary": {
+            "endlineno": 4,
+            "kind": "alias",
+            "lineno": 4,
+            "name": "WeakKeyDictionary",
+            "target_path": "weakref.WeakKeyDictionary"
+          },
+          "_TClass": {
+            "endlineno": 12,
+            "kind": "attribute",
+            "labels": [
+              "module-attribute"
+            ],
+            "lineno": 12,
+            "members": {},
+            "name": "_TClass",
+            "value": {
+              "arguments": [
+                "'_TClass'"
+              ],
+              "cls": "ExprCall",
+              "function": {
+                "cls": "ExprName",
+                "name": "TypeVar"
+              }
+            }
+          },
+          "_TValue": {
+            "endlineno": 13,
+            "kind": "attribute",
+            "labels": [
+              "module-attribute"
+            ],
+            "lineno": 13,
+            "members": {},
+            "name": "_TValue",
+            "value": {
+              "arguments": [
+                "'_TValue'"
+              ],
+              "cls": "ExprCall",
+              "function": {
+                "cls": "ExprName",
+                "name": "TypeVar"
+              }
+            }
+          },
+          "_dep_ctx_stack": {
+            "annotation": {
+              "cls": "ExprSubscript",
+              "left": {
+                "cls": "ExprName",
+                "name": "list"
+              },
+              "slice": {
+                "cls": "ExprSubscript",
+                "left": {
+                  "cls": "ExprName",
+                  "name": "set"
+                },
+                "slice": {
+                  "cls": "ExprName",
+                  "name": "Notifier"
+                }
+              }
+            },
+            "endlineno": 15,
+            "kind": "attribute",
+            "labels": [
+              "module-attribute"
+            ],
+            "lineno": 15,
+            "members": {},
+            "name": "_dep_ctx_stack",
+            "value": {
+              "cls": "ExprList",
+              "elements": []
+            }
+          },
+          "asyncio": {
+            "endlineno": 1,
+            "kind": "alias",
+            "lineno": 1,
+            "name": "asyncio",
+            "target_path": "asyncio"
+          },
+          "contextmanager": {
+            "endlineno": 2,
+            "kind": "alias",
+            "lineno": 2,
+            "name": "contextmanager",
+            "target_path": "contextlib.contextmanager"
+          },
+          "listen_for_dependencies": {
+            "decorators": [
+              {
+                "endlineno": 18,
+                "lineno": 18,
+                "value": {
+                  "cls": "ExprName",
+                  "name": "contextmanager"
+                }
+              }
+            ],
+            "docstring": {
+              "endlineno": 23,
+              "lineno": 20,
+              "value": "Context manager that listens for dependencies and adds them to `buffer`.\nTemporarily suppresses existing listeners until the context manager exits."
+            },
+            "endlineno": 28,
+            "kind": "function",
+            "labels": [],
+            "lineno": 18,
+            "members": {},
+            "name": "listen_for_dependencies",
+            "parameters": [
+              {
+                "annotation": {
+                  "cls": "ExprSubscript",
+                  "left": {
+                    "cls": "ExprName",
+                    "name": "set"
+                  },
+                  "slice": {
+                    "cls": "ExprName",
+                    "name": "Notifier"
+                  }
+                },
+                "default": null,
+                "kind": "positional or keyword",
+                "name": "buffer"
+              }
+            ],
+            "returns": {
+              "cls": "ExprSubscript",
+              "left": {
+                "cls": "ExprName",
+                "name": "Iterator"
+              },
+              "slice": "None"
+            }
+          },
+          "reactive_property": {
+            "decorators": [],
+            "docstring": {
+              "endlineno": 113,
+              "lineno": 110,
+              "value": "Decorator that creates a reactive property backed by a getter function.\nAllows defining a setter using `@name.setter`."
+            },
+            "endlineno": 115,
+            "kind": "function",
+            "labels": [],
+            "lineno": 107,
+            "members": {},
+            "name": "reactive_property",
+            "parameters": [
+              {
+                "annotation": {
+                  "cls": "ExprSubscript",
+                  "left": {
+                    "cls": "ExprName",
+                    "name": "Getter"
+                  },
+                  "slice": {
+                    "cls": "ExprTuple",
+                    "elements": [
+                      {
+                        "cls": "ExprName",
+                        "name": "_TClass"
+                      },
+                      {
+                        "cls": "ExprName",
+                        "name": "_TValue"
+                      }
+                    ],
+                    "implicit": true
+                  }
+                },
+                "default": null,
+                "kind": "positional or keyword",
+                "name": "fget"
+              }
+            ],
+            "returns": {
+              "cls": "ExprSubscript",
+              "left": {
+                "cls": "ExprName",
+                "name": "ReactiveProperty"
+              },
+              "slice": {
+                "cls": "ExprTuple",
+                "elements": [
+                  {
+                    "cls": "ExprName",
+                    "name": "_TClass"
+                  },
+                  {
+                    "cls": "ExprName",
+                    "name": "_TValue"
+                  }
+                ],
+                "implicit": true
+              }
+            }
+          }
+        },
+        "name": "reactive_property"
+      },
+      "typed_property": {
+        "filepath": "/mnt/c/Users/Aaron/Documents/Digital Aqua/DesignPilotFusion/External/rxprop/Source/rxprop/typed_property.py",
+        "kind": "module",
+        "labels": [],
+        "members": {
+          "Any": {
+            "endlineno": 3,
+            "kind": "alias",
+            "lineno": 1,
+            "name": "Any",
+            "target_path": "typing.Any"
+          },
+          "AnyFunction": {
+            "endlineno": 9,
+            "kind": "attribute",
+            "labels": [
+              "module-attribute"
+            ],
+            "lineno": 9,
+            "members": {},
+            "name": "AnyFunction",
+            "value": {
+              "cls": "ExprSubscript",
+              "left": {
+                "cls": "ExprName",
+                "name": "Callable"
+              },
+              "slice": {
+                "cls": "ExprTuple",
+                "elements": [
+                  "...",
+                  {
+                    "cls": "ExprName",
+                    "name": "Any"
+                  }
+                ],
+                "implicit": true
+              }
+            }
+          },
+          "Callable": {
+            "endlineno": 3,
+            "kind": "alias",
+            "lineno": 1,
+            "name": "Callable",
+            "target_path": "typing.Callable"
+          },
+          "DefaultMixin": {
+            "bases": [
+              {
+                "cls": "ExprSubscript",
+                "left": {
+                  "cls": "ExprName",
+                  "name": "TypedProperty"
+                },
+                "slice": {
+                  "cls": "ExprTuple",
+                  "elements": [
+                    {
+                      "cls": "ExprName",
+                      "name": "TClass"
+                    },
+                    {
+                      "cls": "ExprName",
+                      "name": "TValue"
+                    }
+                  ],
+                  "implicit": true
+                }
+              }
+            ],
+            "decorators": [],
+            "docstring": {
+              "endlineno": 132,
+              "lineno": 130,
+              "value": "Adds a default value factory to a `TypedProperty`."
+            },
+            "endlineno": 145,
+            "kind": "class",
+            "labels": [],
+            "lineno": 129,
+            "members": {
+              "__init__": {
+                "decorators": [],
+                "endlineno": 135,
+                "kind": "function",
+                "labels": [],
+                "lineno": 133,
+                "members": {},
+                "name": "__init__",
+                "parameters": [
+                  {
+                    "annotation": null,
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "self"
+                  },
+                  {
+                    "annotation": {
+                      "cls": "ExprSubscript",
+                      "left": {
+                        "cls": "ExprName",
+                        "name": "Getter"
+                      },
+                      "slice": {
+                        "cls": "ExprTuple",
+                        "elements": [
+                          {
+                            "cls": "ExprName",
+                            "name": "TClass"
+                          },
+                          {
+                            "cls": "ExprName",
+                            "name": "TValue"
+                          }
+                        ],
+                        "implicit": true
+                      }
+                    },
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "fdefault"
+                  },
+                  {
+                    "annotation": {
+                      "cls": "ExprName",
+                      "name": "Any"
+                    },
+                    "default": "{}",
+                    "kind": "variadic keyword",
+                    "name": "kwargs"
+                  }
+                ],
+                "returns": null
+              },
+              "_get": {
+                "decorators": [],
+                "endlineno": 138,
+                "kind": "function",
+                "labels": [],
+                "lineno": 137,
+                "members": {},
+                "name": "_get",
+                "parameters": [
+                  {
+                    "annotation": null,
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "self"
+                  },
+                  {
+                    "annotation": {
+                      "cls": "ExprName",
+                      "name": "TClass"
+                    },
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "instance"
+                  }
+                ],
+                "returns": {
+                  "cls": "ExprName",
+                  "name": "TValue"
+                }
+              },
+              "default": {
+                "decorators": [],
+                "docstring": {
+                  "endlineno": 143,
+                  "lineno": 141,
+                  "value": "Sets the default value factory for the property."
+                },
+                "endlineno": 145,
+                "kind": "function",
+                "labels": [],
+                "lineno": 140,
+                "members": {},
+                "name": "default",
+                "parameters": [
+                  {
+                    "annotation": null,
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "self"
+                  },
+                  {
+                    "annotation": {
+                      "cls": "ExprSubscript",
+                      "left": {
+                        "cls": "ExprName",
+                        "name": "Getter"
+                      },
+                      "slice": {
+                        "cls": "ExprTuple",
+                        "elements": [
+                          {
+                            "cls": "ExprName",
+                            "name": "TClass"
+                          },
+                          {
+                            "cls": "ExprName",
+                            "name": "TValue"
+                          }
+                        ],
+                        "implicit": true
+                      }
+                    },
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "fdefault"
+                  }
+                ],
+                "returns": {
+                  "cls": "ExprName",
+                  "name": "Self"
+                }
+              },
+              "fdefault": {
+                "endlineno": 135,
+                "kind": "attribute",
+                "labels": [
+                  "instance-attribute"
+                ],
+                "lineno": 135,
+                "members": {},
+                "name": "fdefault",
+                "value": {
+                  "cls": "ExprName",
+                  "name": "fdefault"
+                }
+              }
+            },
+            "name": "DefaultMixin"
+          },
+          "Deleter": {
+            "endlineno": 12,
+            "kind": "attribute",
+            "labels": [
+              "module-attribute"
+            ],
+            "lineno": 12,
+            "members": {},
+            "name": "Deleter",
+            "value": {
+              "cls": "ExprSubscript",
+              "left": {
+                "cls": "ExprName",
+                "name": "Callable"
+              },
+              "slice": {
+                "cls": "ExprTuple",
+                "elements": [
+                  {
+                    "cls": "ExprList",
+                    "elements": [
+                      {
+                        "cls": "ExprName",
+                        "name": "TClass"
+                      }
+                    ]
+                  },
+                  "None"
+                ],
+                "implicit": true
+              }
+            }
+          },
+          "DeleterMixin": {
+            "bases": [
+              {
+                "cls": "ExprSubscript",
+                "left": {
+                  "cls": "ExprName",
+                  "name": "TypedProperty"
+                },
+                "slice": {
+                  "cls": "ExprTuple",
+                  "elements": [
+                    {
+                      "cls": "ExprName",
+                      "name": "TClass"
+                    },
+                    {
+                      "cls": "ExprName",
+                      "name": "TValue"
+                    }
+                  ],
+                  "implicit": true
+                }
+              }
+            ],
+            "decorators": [],
+            "docstring": {
+              "endlineno": 111,
+              "lineno": 109,
+              "value": "Adds a user-customisable `deleter` to a `TypedProperty`."
+            },
+            "endlineno": 126,
+            "kind": "class",
+            "labels": [],
+            "lineno": 108,
+            "members": {
+              "__init__": {
+                "decorators": [],
+                "endlineno": 114,
+                "kind": "function",
+                "labels": [],
+                "lineno": 112,
+                "members": {},
+                "name": "__init__",
+                "parameters": [
+                  {
+                    "annotation": null,
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "self"
+                  },
+                  {
+                    "annotation": {
+                      "cls": "ExprSubscript",
+                      "left": {
+                        "cls": "ExprName",
+                        "name": "Optional"
+                      },
+                      "slice": {
+                        "cls": "ExprSubscript",
+                        "left": {
+                          "cls": "ExprName",
+                          "name": "Deleter"
+                        },
+                        "slice": {
+                          "cls": "ExprName",
+                          "name": "TClass"
+                        }
+                      }
+                    },
+                    "default": "None",
+                    "kind": "keyword-only",
+                    "name": "fdel"
+                  },
+                  {
+                    "annotation": {
+                      "cls": "ExprName",
+                      "name": "Any"
+                    },
+                    "default": "{}",
+                    "kind": "variadic keyword",
+                    "name": "kwargs"
+                  }
+                ],
+                "returns": null
+              },
+              "_delete": {
+                "decorators": [],
+                "endlineno": 126,
+                "kind": "function",
+                "labels": [],
+                "lineno": 123,
+                "members": {},
+                "name": "_delete",
+                "parameters": [
+                  {
+                    "annotation": null,
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "self"
+                  },
+                  {
+                    "annotation": {
+                      "cls": "ExprName",
+                      "name": "TClass"
+                    },
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "instance"
+                  }
+                ],
+                "returns": "None"
+              },
+              "deleter": {
+                "decorators": [],
+                "docstring": {
+                  "endlineno": 119,
+                  "lineno": 117,
+                  "value": "Sets the `deleter` function on this property."
+                },
+                "endlineno": 121,
+                "kind": "function",
+                "labels": [],
+                "lineno": 116,
+                "members": {},
+                "name": "deleter",
+                "parameters": [
+                  {
+                    "annotation": null,
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "self"
+                  },
+                  {
+                    "annotation": {
+                      "cls": "ExprSubscript",
+                      "left": {
+                        "cls": "ExprName",
+                        "name": "Deleter"
+                      },
+                      "slice": {
+                        "cls": "ExprName",
+                        "name": "TClass"
+                      }
+                    },
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "fdel"
+                  }
+                ],
+                "returns": {
+                  "cls": "ExprName",
+                  "name": "Self"
+                }
+              },
+              "fdel": {
+                "endlineno": 114,
+                "kind": "attribute",
+                "labels": [
+                  "instance-attribute"
+                ],
+                "lineno": 114,
+                "members": {},
+                "name": "fdel",
+                "value": {
+                  "cls": "ExprName",
+                  "name": "fdel"
+                }
+              }
+            },
+            "name": "DeleterMixin"
+          },
+          "Generic": {
+            "endlineno": 3,
+            "kind": "alias",
+            "lineno": 1,
+            "name": "Generic",
+            "target_path": "typing.Generic"
+          },
+          "Getter": {
+            "endlineno": 10,
+            "kind": "attribute",
+            "labels": [
+              "module-attribute"
+            ],
+            "lineno": 10,
+            "members": {},
+            "name": "Getter",
+            "value": {
+              "cls": "ExprSubscript",
+              "left": {
+                "cls": "ExprName",
+                "name": "Callable"
+              },
+              "slice": {
+                "cls": "ExprTuple",
+                "elements": [
+                  {
+                    "cls": "ExprList",
+                    "elements": [
+                      {
+                        "cls": "ExprName",
+                        "name": "TClass"
+                      }
+                    ]
+                  },
+                  {
+                    "cls": "ExprName",
+                    "name": "TValue"
+                  }
+                ],
+                "implicit": true
+              }
+            }
+          },
+          "GetterMixin": {
+            "bases": [
+              {
+                "cls": "ExprSubscript",
+                "left": {
+                  "cls": "ExprName",
+                  "name": "TypedProperty"
+                },
+                "slice": {
+                  "cls": "ExprTuple",
+                  "elements": [
+                    {
+                      "cls": "ExprName",
+                      "name": "TClass"
+                    },
+                    {
+                      "cls": "ExprName",
+                      "name": "TValue"
+                    }
+                  ],
+                  "implicit": true
+                }
+              }
+            ],
+            "decorators": [],
+            "docstring": {
+              "endlineno": 69,
+              "lineno": 67,
+              "value": "Adds a user-customisable `getter` to a `TypedProperty`."
+            },
+            "endlineno": 84,
+            "kind": "class",
+            "labels": [],
+            "lineno": 66,
+            "members": {
+              "__init__": {
+                "decorators": [],
+                "endlineno": 72,
+                "kind": "function",
+                "labels": [],
+                "lineno": 70,
+                "members": {},
+                "name": "__init__",
+                "parameters": [
+                  {
+                    "annotation": null,
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "self"
+                  },
+                  {
+                    "annotation": {
+                      "cls": "ExprSubscript",
+                      "left": {
+                        "cls": "ExprName",
+                        "name": "Optional"
+                      },
+                      "slice": {
+                        "cls": "ExprSubscript",
+                        "left": {
+                          "cls": "ExprName",
+                          "name": "Getter"
+                        },
+                        "slice": {
+                          "cls": "ExprTuple",
+                          "elements": [
+                            {
+                              "cls": "ExprName",
+                              "name": "TClass"
+                            },
+                            {
+                              "cls": "ExprName",
+                              "name": "TValue"
+                            }
+                          ],
+                          "implicit": true
+                        }
+                      }
+                    },
+                    "default": "None",
+                    "kind": "keyword-only",
+                    "name": "fget"
+                  },
+                  {
+                    "annotation": {
+                      "cls": "ExprName",
+                      "name": "Any"
+                    },
+                    "default": "{}",
+                    "kind": "variadic keyword",
+                    "name": "kwargs"
+                  }
+                ],
+                "returns": null
+              },
+              "_get": {
+                "decorators": [],
+                "endlineno": 84,
+                "kind": "function",
+                "labels": [],
+                "lineno": 81,
+                "members": {},
+                "name": "_get",
+                "parameters": [
+                  {
+                    "annotation": null,
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "self"
+                  },
+                  {
+                    "annotation": {
+                      "cls": "ExprName",
+                      "name": "TClass"
+                    },
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "instance"
+                  }
+                ],
+                "returns": {
+                  "cls": "ExprName",
+                  "name": "TValue"
+                }
+              },
+              "fget": {
+                "endlineno": 72,
+                "kind": "attribute",
+                "labels": [
+                  "instance-attribute"
+                ],
+                "lineno": 72,
+                "members": {},
+                "name": "fget",
+                "value": {
+                  "cls": "ExprName",
+                  "name": "fget"
+                }
+              },
+              "getter": {
+                "decorators": [],
+                "docstring": {
+                  "endlineno": 77,
+                  "lineno": 75,
+                  "value": "Sets the `getter` function on this property."
+                },
+                "endlineno": 79,
+                "kind": "function",
+                "labels": [],
+                "lineno": 74,
+                "members": {},
+                "name": "getter",
+                "parameters": [
+                  {
+                    "annotation": null,
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "self"
+                  },
+                  {
+                    "annotation": {
+                      "cls": "ExprSubscript",
+                      "left": {
+                        "cls": "ExprName",
+                        "name": "Getter"
+                      },
+                      "slice": {
+                        "cls": "ExprTuple",
+                        "elements": [
+                          {
+                            "cls": "ExprName",
+                            "name": "TClass"
+                          },
+                          {
+                            "cls": "ExprName",
+                            "name": "TValue"
+                          }
+                        ],
+                        "implicit": true
+                      }
+                    },
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "fget"
+                  }
+                ],
+                "returns": {
+                  "cls": "ExprName",
+                  "name": "Self"
+                }
+              }
+            },
+            "name": "GetterMixin"
+          },
+          "Optional": {
+            "endlineno": 3,
+            "kind": "alias",
+            "lineno": 1,
+            "name": "Optional",
+            "target_path": "typing.Optional"
+          },
+          "Self": {
+            "endlineno": 3,
+            "kind": "alias",
+            "lineno": 1,
+            "name": "Self",
+            "target_path": "typing.Self"
+          },
+          "Setter": {
+            "endlineno": 11,
+            "kind": "attribute",
+            "labels": [
+              "module-attribute"
+            ],
+            "lineno": 11,
+            "members": {},
+            "name": "Setter",
+            "value": {
+              "cls": "ExprSubscript",
+              "left": {
+                "cls": "ExprName",
+                "name": "Callable"
+              },
+              "slice": {
+                "cls": "ExprTuple",
+                "elements": [
+                  {
+                    "cls": "ExprList",
+                    "elements": [
+                      {
+                        "cls": "ExprName",
+                        "name": "TClass"
+                      },
+                      {
+                        "cls": "ExprName",
+                        "name": "TValue"
+                      }
+                    ]
+                  },
+                  "None"
+                ],
+                "implicit": true
+              }
+            }
+          },
+          "SetterMixin": {
+            "bases": [
+              {
+                "cls": "ExprSubscript",
+                "left": {
+                  "cls": "ExprName",
+                  "name": "TypedProperty"
+                },
+                "slice": {
+                  "cls": "ExprTuple",
+                  "elements": [
+                    {
+                      "cls": "ExprName",
+                      "name": "TClass"
+                    },
+                    {
+                      "cls": "ExprName",
+                      "name": "TValue"
+                    }
+                  ],
+                  "implicit": true
+                }
+              }
+            ],
+            "decorators": [],
+            "docstring": {
+              "endlineno": 90,
+              "lineno": 88,
+              "value": "Adds a user-customisable `setter` to a `TypedProperty`."
+            },
+            "endlineno": 105,
+            "kind": "class",
+            "labels": [],
+            "lineno": 87,
+            "members": {
+              "__init__": {
+                "decorators": [],
+                "endlineno": 93,
+                "kind": "function",
+                "labels": [],
+                "lineno": 91,
+                "members": {},
+                "name": "__init__",
+                "parameters": [
+                  {
+                    "annotation": null,
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "self"
+                  },
+                  {
+                    "annotation": {
+                      "cls": "ExprSubscript",
+                      "left": {
+                        "cls": "ExprName",
+                        "name": "Optional"
+                      },
+                      "slice": {
+                        "cls": "ExprSubscript",
+                        "left": {
+                          "cls": "ExprName",
+                          "name": "Setter"
+                        },
+                        "slice": {
+                          "cls": "ExprTuple",
+                          "elements": [
+                            {
+                              "cls": "ExprName",
+                              "name": "TClass"
+                            },
+                            {
+                              "cls": "ExprName",
+                              "name": "TValue"
+                            }
+                          ],
+                          "implicit": true
+                        }
+                      }
+                    },
+                    "default": "None",
+                    "kind": "keyword-only",
+                    "name": "fset"
+                  },
+                  {
+                    "annotation": {
+                      "cls": "ExprName",
+                      "name": "Any"
+                    },
+                    "default": "{}",
+                    "kind": "variadic keyword",
+                    "name": "kwargs"
+                  }
+                ],
+                "returns": null
+              },
+              "_set": {
+                "decorators": [],
+                "endlineno": 105,
+                "kind": "function",
+                "labels": [],
+                "lineno": 102,
+                "members": {},
+                "name": "_set",
+                "parameters": [
+                  {
+                    "annotation": null,
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "self"
+                  },
+                  {
+                    "annotation": {
+                      "cls": "ExprName",
+                      "name": "TClass"
+                    },
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "instance"
+                  },
+                  {
+                    "annotation": {
+                      "cls": "ExprName",
+                      "name": "TValue"
+                    },
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "value"
+                  }
+                ],
+                "returns": "None"
+              },
+              "fset": {
+                "endlineno": 93,
+                "kind": "attribute",
+                "labels": [
+                  "instance-attribute"
+                ],
+                "lineno": 93,
+                "members": {},
+                "name": "fset",
+                "value": {
+                  "cls": "ExprName",
+                  "name": "fset"
+                }
+              },
+              "setter": {
+                "decorators": [],
+                "docstring": {
+                  "endlineno": 98,
+                  "lineno": 96,
+                  "value": "Sets the `setter` function on this property."
+                },
+                "endlineno": 100,
+                "kind": "function",
+                "labels": [],
+                "lineno": 95,
+                "members": {},
+                "name": "setter",
+                "parameters": [
+                  {
+                    "annotation": null,
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "self"
+                  },
+                  {
+                    "annotation": {
+                      "cls": "ExprSubscript",
+                      "left": {
+                        "cls": "ExprName",
+                        "name": "Setter"
+                      },
+                      "slice": {
+                        "cls": "ExprTuple",
+                        "elements": [
+                          {
+                            "cls": "ExprName",
+                            "name": "TClass"
+                          },
+                          {
+                            "cls": "ExprName",
+                            "name": "TValue"
+                          }
+                        ],
+                        "implicit": true
+                      }
+                    },
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "fset"
+                  }
+                ],
+                "returns": {
+                  "cls": "ExprName",
+                  "name": "Self"
+                }
+              }
+            },
+            "name": "SetterMixin"
+          },
+          "TClass": {
+            "endlineno": 6,
+            "kind": "attribute",
+            "labels": [
+              "module-attribute"
+            ],
+            "lineno": 6,
+            "members": {},
+            "name": "TClass",
+            "value": {
+              "arguments": [
+                "'TClass'"
+              ],
+              "cls": "ExprCall",
+              "function": {
+                "cls": "ExprName",
+                "name": "TypeVar"
+              }
+            }
+          },
+          "TValue": {
+            "endlineno": 7,
+            "kind": "attribute",
+            "labels": [
+              "module-attribute"
+            ],
+            "lineno": 7,
+            "members": {},
+            "name": "TValue",
+            "value": {
+              "arguments": [
+                "'TValue'"
+              ],
+              "cls": "ExprCall",
+              "function": {
+                "cls": "ExprName",
+                "name": "TypeVar"
+              }
+            }
+          },
+          "TypeVar": {
+            "endlineno": 3,
+            "kind": "alias",
+            "lineno": 1,
+            "name": "TypeVar",
+            "target_path": "typing.TypeVar"
+          },
+          "TypedProperty": {
+            "bases": [
+              {
+                "cls": "ExprSubscript",
+                "left": {
+                  "cls": "ExprName",
+                  "name": "Generic"
+                },
+                "slice": {
+                  "cls": "ExprTuple",
+                  "elements": [
+                    {
+                      "cls": "ExprName",
+                      "name": "TClass"
+                    },
+                    {
+                      "cls": "ExprName",
+                      "name": "TValue"
+                    }
+                  ],
+                  "implicit": true
+                }
+              }
+            ],
+            "decorators": [],
+            "docstring": {
+              "endlineno": 22,
+              "lineno": 16,
+              "value": "Provides a type-safe property pattern that can be be used similarly to\nthe `property` built-in.\n\nThe main difference is that this class is object-oriented rather than\nfunctional."
+            },
+            "endlineno": 63,
+            "kind": "class",
+            "labels": [],
+            "lineno": 15,
+            "members": {
+              "__delete__": {
+                "decorators": [],
+                "endlineno": 55,
+                "kind": "function",
+                "labels": [],
+                "lineno": 54,
+                "members": {},
+                "name": "__delete__",
+                "parameters": [
+                  {
+                    "annotation": null,
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "self"
+                  },
+                  {
+                    "annotation": {
+                      "cls": "ExprName",
+                      "name": "TClass"
+                    },
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "instance"
+                  }
+                ],
+                "returns": "None"
+              },
+              "__doc__": {
+                "endlineno": 24,
+                "kind": "attribute",
+                "labels": [
+                  "instance-attribute"
+                ],
+                "lineno": 24,
+                "members": {},
+                "name": "__doc__",
+                "value": {
+                  "body": {
+                    "cls": "ExprAttribute",
+                    "values": [
+                      {
+                        "cls": "ExprName",
+                        "name": "fref"
+                      },
+                      {
+                        "cls": "ExprName",
+                        "name": "__doc__"
+                      }
+                    ]
+                  },
+                  "cls": "ExprIfExp",
+                  "orelse": "''",
+                  "test": {
+                    "cls": "ExprName",
+                    "name": "fref"
+                  }
+                }
+              },
+              "__get__": {
+                "decorators": [],
+                "endlineno": 39,
+                "kind": "function",
+                "labels": [],
+                "lineno": 33,
+                "members": {},
+                "name": "__get__",
+                "parameters": [
+                  {
+                    "annotation": null,
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "self"
+                  },
+                  {
+                    "annotation": {
+                      "cls": "ExprSubscript",
+                      "left": {
+                        "cls": "ExprName",
+                        "name": "Optional"
+                      },
+                      "slice": {
+                        "cls": "ExprName",
+                        "name": "TClass"
+                      }
+                    },
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "instance"
+                  },
+                  {
+                    "annotation": {
+                      "cls": "ExprSubscript",
+                      "left": {
+                        "cls": "ExprName",
+                        "name": "type"
+                      },
+                      "slice": {
+                        "cls": "ExprName",
+                        "name": "TClass"
+                      }
+                    },
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "owner"
+                  }
+                ],
+                "returns": {
+                  "cls": "ExprBinOp",
+                  "left": {
+                    "cls": "ExprName",
+                    "name": "TValue"
+                  },
+                  "operator": "|",
+                  "right": {
+                    "cls": "ExprName",
+                    "name": "Self"
+                  }
+                }
+              },
+              "__init__": {
+                "decorators": [],
+                "endlineno": 25,
+                "kind": "function",
+                "labels": [],
+                "lineno": 23,
+                "members": {},
+                "name": "__init__",
+                "parameters": [
+                  {
+                    "annotation": null,
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "self"
+                  },
+                  {
+                    "annotation": {
+                      "cls": "ExprSubscript",
+                      "left": {
+                        "cls": "ExprName",
+                        "name": "Optional"
+                      },
+                      "slice": {
+                        "cls": "ExprName",
+                        "name": "AnyFunction"
+                      }
+                    },
+                    "default": "None",
+                    "kind": "keyword-only",
+                    "name": "fref"
+                  },
+                  {
+                    "annotation": {
+                      "cls": "ExprName",
+                      "name": "Any"
+                    },
+                    "default": "{}",
+                    "kind": "variadic keyword",
+                    "name": "__"
+                  }
+                ],
+                "returns": null
+              },
+              "__set__": {
+                "decorators": [],
+                "endlineno": 47,
+                "kind": "function",
+                "labels": [],
+                "lineno": 46,
+                "members": {},
+                "name": "__set__",
+                "parameters": [
+                  {
+                    "annotation": null,
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "self"
+                  },
+                  {
+                    "annotation": {
+                      "cls": "ExprName",
+                      "name": "TClass"
+                    },
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "instance"
+                  },
+                  {
+                    "annotation": {
+                      "cls": "ExprName",
+                      "name": "TValue"
+                    },
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "value"
+                  }
+                ],
+                "returns": "None"
+              },
+              "__set_name__": {
+                "decorators": [],
+                "endlineno": 63,
+                "kind": "function",
+                "labels": [],
+                "lineno": 62,
+                "members": {},
+                "name": "__set_name__",
+                "parameters": [
+                  {
+                    "annotation": null,
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "self"
+                  },
+                  {
+                    "annotation": {
+                      "cls": "ExprSubscript",
+                      "left": {
+                        "cls": "ExprName",
+                        "name": "type"
+                      },
+                      "slice": {
+                        "cls": "ExprName",
+                        "name": "TClass"
+                      }
+                    },
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "owner"
+                  },
+                  {
+                    "annotation": {
+                      "cls": "ExprName",
+                      "name": "str"
+                    },
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "name"
+                  }
+                ],
+                "returns": "None"
+              },
+              "_delete": {
+                "decorators": [],
+                "docstring": {
+                  "endlineno": 59,
+                  "lineno": 57,
+                  "value": "An easily-overridable implementation of `__delete__`."
+                },
+                "endlineno": 60,
+                "kind": "function",
+                "labels": [],
+                "lineno": 56,
+                "members": {},
+                "name": "_delete",
+                "parameters": [
+                  {
+                    "annotation": null,
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "self"
+                  },
+                  {
+                    "annotation": {
+                      "cls": "ExprName",
+                      "name": "TClass"
+                    },
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "instance"
+                  }
+                ],
+                "returns": "None"
+              },
+              "_get": {
+                "decorators": [],
+                "docstring": {
+                  "endlineno": 43,
+                  "lineno": 41,
+                  "value": "An easily-overridable implementation of `__get__`."
+                },
+                "endlineno": 44,
+                "kind": "function",
+                "labels": [],
+                "lineno": 40,
+                "members": {},
+                "name": "_get",
+                "parameters": [
+                  {
+                    "annotation": null,
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "self"
+                  },
+                  {
+                    "annotation": {
+                      "cls": "ExprName",
+                      "name": "TClass"
+                    },
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "instance"
+                  }
+                ],
+                "returns": {
+                  "cls": "ExprName",
+                  "name": "TValue"
+                }
+              },
+              "_name": {
+                "endlineno": 25,
+                "kind": "attribute",
+                "labels": [
+                  "instance-attribute"
+                ],
+                "lineno": 25,
+                "members": {},
+                "name": "_name",
+                "value": {
+                  "body": {
+                    "cls": "ExprAttribute",
+                    "values": [
+                      {
+                        "cls": "ExprName",
+                        "name": "fref"
+                      },
+                      {
+                        "cls": "ExprName",
+                        "name": "__name__"
+                      }
+                    ]
+                  },
+                  "cls": "ExprIfExp",
+                  "orelse": "''",
+                  "test": {
+                    "cls": "ExprName",
+                    "name": "fref"
+                  }
+                }
+              },
+              "_set": {
+                "decorators": [],
+                "docstring": {
+                  "endlineno": 51,
+                  "lineno": 49,
+                  "value": "An easily-overridable implementation of `__set__`."
+                },
+                "endlineno": 52,
+                "kind": "function",
+                "labels": [],
+                "lineno": 48,
+                "members": {},
+                "name": "_set",
+                "parameters": [
+                  {
+                    "annotation": null,
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "self"
+                  },
+                  {
+                    "annotation": {
+                      "cls": "ExprName",
+                      "name": "TClass"
+                    },
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "instance"
+                  },
+                  {
+                    "annotation": {
+                      "cls": "ExprName",
+                      "name": "TValue"
+                    },
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "value"
+                  }
+                ],
+                "returns": "None"
+              }
+            },
+            "name": "TypedProperty"
+          },
+          "overload": {
+            "endlineno": 3,
+            "kind": "alias",
+            "lineno": 1,
+            "name": "overload",
+            "target_path": "typing.overload"
+          }
+        },
+        "name": "typed_property"
+      },
+      "value": {
+        "endlineno": 6,
+        "kind": "alias",
+        "lineno": 6,
+        "name": "value",
+        "target_path": "rxprop.value_property.value"
+      },
+      "value_property": {
+        "filepath": "/mnt/c/Users/Aaron/Documents/Digital Aqua/DesignPilotFusion/External/rxprop/Source/rxprop/value_property.py",
+        "kind": "module",
+        "labels": [],
+        "members": {
+          "Any": {
+            "endlineno": 1,
+            "kind": "alias",
+            "lineno": 1,
+            "name": "Any",
+            "target_path": "typing.Any"
+          },
+          "DefaultMixin": {
+            "endlineno": 5,
+            "kind": "alias",
+            "lineno": 5,
+            "name": "DefaultMixin",
+            "target_path": "rxprop.typed_property.DefaultMixin"
+          },
+          "Getter": {
+            "endlineno": 5,
+            "kind": "alias",
+            "lineno": 5,
+            "name": "Getter",
+            "target_path": "rxprop.typed_property.Getter"
+          },
+          "ReactivePropertyMixin": {
+            "endlineno": 4,
+            "kind": "alias",
+            "lineno": 4,
+            "name": "ReactivePropertyMixin",
+            "target_path": "rxprop.reactive_property.ReactivePropertyMixin"
+          },
+          "TypeVar": {
+            "endlineno": 1,
+            "kind": "alias",
+            "lineno": 1,
+            "name": "TypeVar",
+            "target_path": "typing.TypeVar"
+          },
+          "TypedProperty": {
+            "endlineno": 5,
+            "kind": "alias",
+            "lineno": 5,
+            "name": "TypedProperty",
+            "target_path": "rxprop.typed_property.TypedProperty"
+          },
+          "ValueProperty": {
+            "bases": [
+              {
+                "cls": "ExprSubscript",
+                "left": {
+                  "cls": "ExprName",
+                  "name": "ReactivePropertyMixin"
+                },
+                "slice": {
+                  "cls": "ExprTuple",
+                  "elements": [
+                    {
+                      "cls": "ExprName",
+                      "name": "_TClass"
+                    },
+                    {
+                      "cls": "ExprName",
+                      "name": "_TValue"
+                    }
+                  ],
+                  "implicit": true
+                }
+              },
+              {
+                "cls": "ExprSubscript",
+                "left": {
+                  "cls": "ExprName",
+                  "name": "ValueStashMixin"
+                },
+                "slice": {
+                  "cls": "ExprTuple",
+                  "elements": [
+                    {
+                      "cls": "ExprName",
+                      "name": "_TClass"
+                    },
+                    {
+                      "cls": "ExprName",
+                      "name": "_TValue"
+                    }
+                  ],
+                  "implicit": true
+                }
+              },
+              {
+                "cls": "ExprSubscript",
+                "left": {
+                  "cls": "ExprName",
+                  "name": "DefaultMixin"
+                },
+                "slice": {
+                  "cls": "ExprTuple",
+                  "elements": [
+                    {
+                      "cls": "ExprName",
+                      "name": "_TClass"
+                    },
+                    {
+                      "cls": "ExprName",
+                      "name": "_TValue"
+                    }
+                  ],
+                  "implicit": true
+                }
+              }
+            ],
+            "decorators": [],
+            "docstring": {
+              "endlineno": 38,
+              "lineno": 36,
+              "value": "A reactive property backed by a field."
+            },
+            "endlineno": 46,
+            "kind": "class",
+            "labels": [],
+            "lineno": 31,
+            "members": {
+              "__init__": {
+                "decorators": [],
+                "endlineno": 40,
+                "kind": "function",
+                "labels": [],
+                "lineno": 39,
+                "members": {},
+                "name": "__init__",
+                "parameters": [
+                  {
+                    "annotation": null,
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "self"
+                  },
+                  {
+                    "annotation": {
+                      "cls": "ExprName",
+                      "name": "Any"
+                    },
+                    "default": "{}",
+                    "kind": "variadic keyword",
+                    "name": "kwargs"
+                  }
+                ],
+                "returns": null
+              },
+              "_set": {
+                "decorators": [],
+                "endlineno": 46,
+                "kind": "function",
+                "labels": [],
+                "lineno": 42,
+                "members": {},
+                "name": "_set",
+                "parameters": [
+                  {
+                    "annotation": null,
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "self"
+                  },
+                  {
+                    "annotation": {
+                      "cls": "ExprName",
+                      "name": "_TClass"
+                    },
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "instance"
+                  },
+                  {
+                    "annotation": {
+                      "cls": "ExprName",
+                      "name": "_TValue"
+                    },
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "value"
+                  }
+                ],
+                "returns": "None"
+              }
+            },
+            "name": "ValueProperty"
+          },
+          "ValueStashMixin": {
+            "bases": [
+              {
+                "cls": "ExprSubscript",
+                "left": {
+                  "cls": "ExprName",
+                  "name": "TypedProperty"
+                },
+                "slice": {
+                  "cls": "ExprTuple",
+                  "elements": [
+                    {
+                      "cls": "ExprName",
+                      "name": "_TClass"
+                    },
+                    {
+                      "cls": "ExprName",
+                      "name": "_TValue"
+                    }
+                  ],
+                  "implicit": true
+                }
+              }
+            ],
+            "decorators": [],
+            "docstring": {
+              "endlineno": 15,
+              "lineno": 13,
+              "value": "Adds a stash of values to a `TypedProperty`."
+            },
+            "endlineno": 28,
+            "kind": "class",
+            "labels": [],
+            "lineno": 12,
+            "members": {
+              "__init__": {
+                "decorators": [],
+                "endlineno": 18,
+                "kind": "function",
+                "labels": [],
+                "lineno": 16,
+                "members": {},
+                "name": "__init__",
+                "parameters": [
+                  {
+                    "annotation": null,
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "self"
+                  },
+                  {
+                    "annotation": {
+                      "cls": "ExprName",
+                      "name": "Any"
+                    },
+                    "default": "{}",
+                    "kind": "variadic keyword",
+                    "name": "kwargs"
+                  }
+                ],
+                "returns": null
+              },
+              "_get": {
+                "decorators": [],
+                "endlineno": 25,
+                "kind": "function",
+                "labels": [],
+                "lineno": 20,
+                "members": {},
+                "name": "_get",
+                "parameters": [
+                  {
+                    "annotation": null,
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "self"
+                  },
+                  {
+                    "annotation": {
+                      "cls": "ExprName",
+                      "name": "_TClass"
+                    },
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "instance"
+                  }
+                ],
+                "returns": {
+                  "cls": "ExprName",
+                  "name": "_TValue"
+                }
+              },
+              "_set": {
+                "decorators": [],
+                "endlineno": 28,
+                "kind": "function",
+                "labels": [],
+                "lineno": 27,
+                "members": {},
+                "name": "_set",
+                "parameters": [
+                  {
+                    "annotation": null,
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "self"
+                  },
+                  {
+                    "annotation": {
+                      "cls": "ExprName",
+                      "name": "_TClass"
+                    },
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "instance"
+                  },
+                  {
+                    "annotation": {
+                      "cls": "ExprName",
+                      "name": "_TValue"
+                    },
+                    "default": null,
+                    "kind": "positional or keyword",
+                    "name": "value"
+                  }
+                ],
+                "returns": "None"
+              },
+              "_values": {
+                "endlineno": 18,
+                "kind": "attribute",
+                "labels": [
+                  "instance-attribute"
+                ],
+                "lineno": 18,
+                "members": {},
+                "name": "_values",
+                "value": {
+                  "arguments": [],
+                  "cls": "ExprCall",
+                  "function": {
+                    "cls": "ExprSubscript",
+                    "left": {
+                      "cls": "ExprName",
+                      "name": "WeakKeyDictionary"
+                    },
+                    "slice": {
+                      "cls": "ExprTuple",
+                      "elements": [
+                        {
+                          "cls": "ExprName",
+                          "name": "_TClass"
+                        },
+                        {
+                          "cls": "ExprName",
+                          "name": "_TValue"
+                        }
+                      ],
+                      "implicit": true
+                    }
+                  }
+                }
+              }
+            },
+            "name": "ValueStashMixin"
+          },
+          "WeakKeyDictionary": {
+            "endlineno": 2,
+            "kind": "alias",
+            "lineno": 2,
+            "name": "WeakKeyDictionary",
+            "target_path": "weakref.WeakKeyDictionary"
+          },
+          "_TClass": {
+            "endlineno": 8,
+            "kind": "attribute",
+            "labels": [
+              "module-attribute"
+            ],
+            "lineno": 8,
+            "members": {},
+            "name": "_TClass",
+            "value": {
+              "arguments": [
+                "'_TClass'"
+              ],
+              "cls": "ExprCall",
+              "function": {
+                "cls": "ExprName",
+                "name": "TypeVar"
+              }
+            }
+          },
+          "_TValue": {
+            "endlineno": 9,
+            "kind": "attribute",
+            "labels": [
+              "module-attribute"
+            ],
+            "lineno": 9,
+            "members": {},
+            "name": "_TValue",
+            "value": {
+              "arguments": [
+                "'_TValue'"
+              ],
+              "cls": "ExprCall",
+              "function": {
+                "cls": "ExprName",
+                "name": "TypeVar"
+              }
+            }
+          },
+          "value": {
+            "decorators": [],
+            "docstring": {
+              "endlineno": 53,
+              "lineno": 50,
+              "value": "Decorator that creates a reactive property backed by a field.\nThe decorated function is called (lazily) to generate the default value."
+            },
+            "endlineno": 54,
+            "kind": "function",
+            "labels": [],
+            "lineno": 49,
+            "members": {},
+            "name": "value",
+            "parameters": [
+              {
+                "annotation": {
+                  "cls": "ExprSubscript",
+                  "left": {
+                    "cls": "ExprName",
+                    "name": "Getter"
+                  },
+                  "slice": {
+                    "cls": "ExprTuple",
+                    "elements": [
+                      {
+                        "cls": "ExprName",
+                        "name": "_TClass"
+                      },
+                      {
+                        "cls": "ExprName",
+                        "name": "_TValue"
+                      }
+                    ],
+                    "implicit": true
+                  }
+                },
+                "default": null,
+                "kind": "positional or keyword",
+                "name": "fdefault"
+              }
+            ],
+            "returns": {
+              "cls": "ExprSubscript",
+              "left": {
+                "cls": "ExprName",
+                "name": "ValueProperty"
+              },
+              "slice": {
+                "cls": "ExprTuple",
+                "elements": [
+                  {
+                    "cls": "ExprName",
+                    "name": "_TClass"
+                  },
+                  {
+                    "cls": "ExprName",
+                    "name": "_TValue"
+                  }
+                ],
+                "implicit": true
+              }
+            }
+          }
+        },
+        "name": "value_property"
+      },
+      "watch": {
+        "filepath": "/mnt/c/Users/Aaron/Documents/Digital Aqua/DesignPilotFusion/External/rxprop/Source/rxprop/watch.py",
+        "kind": "module",
+        "labels": [],
+        "members": {
+          "Any": {
+            "endlineno": 1,
+            "kind": "alias",
+            "lineno": 1,
+            "name": "Any",
+            "target_path": "typing.Any"
+          },
+          "AsyncIterator": {
+            "endlineno": 1,
+            "kind": "alias",
+            "lineno": 1,
+            "name": "AsyncIterator",
+            "target_path": "typing.AsyncIterator"
+          },
+          "ReactivePropertyMixin": {
+            "endlineno": 3,
+            "kind": "alias",
+            "lineno": 3,
+            "name": "ReactivePropertyMixin",
+            "target_path": "rxprop.reactive_property.ReactivePropertyMixin"
+          },
+          "TypeVar": {
+            "endlineno": 1,
+            "kind": "alias",
+            "lineno": 1,
+            "name": "TypeVar",
+            "target_path": "typing.TypeVar"
+          },
+          "_TClass": {
+            "endlineno": 6,
+            "kind": "attribute",
+            "labels": [
+              "module-attribute"
+            ],
+            "lineno": 6,
+            "members": {},
+            "name": "_TClass",
+            "value": {
+              "arguments": [
+                "'_TClass'"
+              ],
+              "cls": "ExprCall",
+              "function": {
+                "cls": "ExprName",
+                "name": "TypeVar"
+              }
+            }
+          },
+          "_TValue": {
+            "endlineno": 7,
+            "kind": "attribute",
+            "labels": [
+              "module-attribute"
+            ],
+            "lineno": 7,
+            "members": {},
+            "name": "_TValue",
+            "value": {
+              "arguments": [
+                "'_TValue'"
+              ],
+              "cls": "ExprCall",
+              "function": {
+                "cls": "ExprName",
+                "name": "TypeVar"
+              }
+            }
+          },
+          "overload": {
+            "endlineno": 1,
+            "kind": "alias",
+            "lineno": 1,
+            "name": "overload",
+            "target_path": "typing.overload"
+          },
+          "watch": {
+            "decorators": [],
+            "docstring": {
+              "endlineno": 57,
+              "lineno": 26,
+              "value": "Asynchronously watches a reactive property for changes and yields new values.\n\nThis function supports two modes of operation based on the `property` argument:\n1.  Direct Property Reference:\n    If `property` is an instance of `ReactivePropertyMixin`, the watch\n    is set up directly. The async iterator will yield values of the\n    specific type `_TValue` associated with the property.\n    Example: `async for val in watch(obj, MyClass.some_property): ...`\n\n2.  Property Name (String):\n    If `property` is a string, it's treated as the name of the reactive\n    property to be looked up on the `instance`'s class. The async\n    iterator will yield values of type `Any`.\n    Example: `async for val in watch(obj, \"some_property_name\"): ...`\n\nThe iterator will first yield the current value of the property upon iteration,\nand subsequently yield new values as the property changes.\n\nArgs:\n    instance: The object instance on which the property resides.\n    property: The reactive property itself (a `ReactivePropertyMixin`\n              instance) or its name (a string).\n\nReturns:\n    An asynchronous iterator (`AsyncIterator`) that yields the property's\n    current value and subsequent new values upon change.\n\nRaises:\n    ValueError: If `property` is a string but does not correspond to a\n                `ReactivePropertyMixin` on the instance's class."
+            },
+            "endlineno": 67,
+            "kind": "function",
+            "labels": [],
+            "lineno": 22,
+            "members": {},
+            "name": "watch",
+            "parameters": [
+              {
+                "annotation": {
+                  "cls": "ExprName",
+                  "name": "_TClass"
+                },
+                "default": null,
+                "kind": "positional or keyword",
+                "name": "instance"
+              },
+              {
+                "annotation": {
+                  "cls": "ExprBinOp",
+                  "left": {
+                    "cls": "ExprSubscript",
+                    "left": {
+                      "cls": "ExprName",
+                      "name": "ReactivePropertyMixin"
+                    },
+                    "slice": {
+                      "cls": "ExprTuple",
+                      "elements": [
+                        {
+                          "cls": "ExprName",
+                          "name": "_TClass"
+                        },
+                        {
+                          "cls": "ExprName",
+                          "name": "_TValue"
+                        }
+                      ],
+                      "implicit": true
+                    }
+                  },
+                  "operator": "|",
+                  "right": {
+                    "cls": "ExprName",
+                    "name": "str"
+                  }
+                },
+                "default": null,
+                "kind": "positional or keyword",
+                "name": "property"
+              }
+            ],
+            "returns": {
+              "cls": "ExprSubscript",
+              "left": {
+                "cls": "ExprName",
+                "name": "AsyncIterator"
+              },
+              "slice": {
+                "cls": "ExprBinOp",
+                "left": {
+                  "cls": "ExprName",
+                  "name": "_TValue"
+                },
+                "operator": "|",
+                "right": {
+                  "cls": "ExprName",
+                  "name": "Any"
+                }
+              }
+            }
+          }
+        },
+        "name": "watch"
+      }
+    },
+    "name": "rxprop"
+  }
+}

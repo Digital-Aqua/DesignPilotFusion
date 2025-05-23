@@ -1,19 +1,15 @@
 {
     "python.autoComplete.extraPaths": [
         "${workspaceFolder}/.cache/defs",
-        "${workspaceFolder}/External/rxprop/Source",
-        "${workspaceFolder}/Source/Packages"
+        "${workspaceFolder}/.conda/lib/python3.*/site-packages"
     ],
     "python.analysis.extraPaths": [
         "${workspaceFolder}/.cache/defs",
-        "${workspaceFolder}/External/rxprop/Source",
-        "${workspaceFolder}/Source/Packages"
+        "${workspaceFolder}/.conda/lib/python3.*/site-packages"
     ],
-    "python.defaultInterpreterPath":
-        "${workspaceFolder}/python.sh",
-        "python.testing.pytestArgs": [
-            "Tests"
-        ],
+    "python.defaultInterpreterPath": "${workspaceFolder}/.conda/bin/python",
+    "python.testing.pytestArgs": [ "Tests" ],
     "python.testing.unittestEnabled": false,
-    "python.testing.pytestEnabled": true
+    "python.testing.pytestEnabled": true,
+    "python.languageServer": "Pylance"
 }

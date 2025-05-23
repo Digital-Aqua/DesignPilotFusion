@@ -1,0 +1,13 @@
+name: build-tools
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python=3.12
+  - pip
+  - pip:
+    - mypy>=1.15.0 # development version
+    - pytest>=8.3.5 # development version
+    - pytest-asyncio>=0.26.0 # development version
+    - pytest-timeout>=2.4.0 # development version
+    - pyright>=1.1.400 # development version

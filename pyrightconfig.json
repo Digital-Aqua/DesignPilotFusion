@@ -6,5 +6,7 @@
       "root": "Tests",
       "typeCheckingMode": "basic"
     }
-  ]
+  ],
+  "reportMissingTypeStubs": "none",
+  "stubPath": "Source/Stubs"
 }

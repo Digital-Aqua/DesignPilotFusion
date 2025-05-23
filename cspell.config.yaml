@@ -6,6 +6,7 @@ words:
   - addin
   - asyncio
   - asyncloop
+  - caseconverter
   - designpilot
   - dpapp
   - fcompute
@@ -15,12 +16,16 @@ words:
   - fref
   - fromlist
   - fusionbase
+  - invalidator
+  - invalidators
   - levelno
+  - mypy
   - onclick
   - pyright
   - pytest
   - pythonpath
   - rxprop
   - setuptools
+  - snakecase
 ignoreWords: []
 import: []

@@ -1,2 +1,27 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+
+[project]
+name = "designpilot_fusion"
+version = "0.1.0"
+description = "DesignPilot add-in for Fusion."
+readme = "README.md"
+requires-python = ">=3.12" # Development version
+dependencies = [
+    "rxprop>=0.1.0",
+     # Development versions
+    "case-converter>=1.2.0",
+]
+classifiers = []
+
+
+[tool.setuptools]
+package-dir = {"" = "Source/Packages"}
+
+
 [tool.pytest.ini_options]
-minversion = "8.3.5" # development version 
+pythonpath = ["Source"]
+timeout = 3
+testpaths = ["Tests/"]

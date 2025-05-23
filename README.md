@@ -41,9 +41,11 @@
 
 ### Manual Build & Install (Git Repo)
 
-1. Open a terminal in the folder where you want to clone the repository.
+1. Check you have [git](https://git-scm.com/downloads) and [conda-forge](https://conda-forge.org/download/) installed.
 
-2. Run:
+2. Open a terminal in the folder where you want to clone the repository.
+
+3. Run:
 ```bash
 git clone \
     --branch release \
@@ -53,20 +55,20 @@ git clone \
 ```
 *If you like to live dangerously, change the branch to `main` to get the latest development version.*
 
-3. Set up your development environment with the command:
+4. Set up your development environment with the command:
 ```bash
 ./build.sh --dev-setup
 ```
 This will detect your Fusion installation and copy autocompletion files for your IDE.
 
-4. Build the add-in to the repo's `.build` subfolder with the command:
+5. Build the add-in to the repo's `.build` subfolder with the command:
 ```bash
 ./build.sh
 ```
 
-5. Open Fusion and go to **Utilities** &rarr; **Scripts and Add-Ins** &rarr; **Add-Ins** Tab &rarr; **My Add-Ins** &rarr; **+**.
+6. Open Fusion and go to **Utilities** &rarr; **Scripts and Add-Ins** &rarr; **Add-Ins** Tab &rarr; **My Add-Ins** &rarr; **+**.
 
-6. Select the folder `<repo>/.build/DesignPilotFusion`.
+7. Select the folder `<repo>/.build/DesignPilotFusion`.
 
 To update to the latest version, run:
 ```bash

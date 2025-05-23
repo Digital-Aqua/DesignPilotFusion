@@ -1,0 +1,18 @@
+---
+description: 
+globs: **/Tests/**/*.py,**/Tests/**/plan.md
+alwaysApply: false
+---
+- Package source is in `Source/Packages`. The packages should be available to your environment.
+- Tests are groped into **Test Plans** in `Tests/plan-name/`.
+- Test plans themselves are named `plan.md` in the relevant test directory.
+- When writing a test plan for a package or subpackage, take care to read the entire source first, to understand its structure and intended behaviour.
+- Test scripts must sit in the same directory as `plan.md`, and should be split up and structured according to the plan's structure.
+- The linter is **pylance**. Treat linter errors as test failures. When appropriate, you may explicitly ignore linter errors by appending `# type: ignore` to lines.
+- Run the `pytest` command to run tests in the terminal.
+- If the User asks you vaugely to "write tests" or "continue testing", use this procedure to work out what to do:
+  - If there's no `plan.md`, write it (then STOP)
+  - If test files exist, run them, and debug any failures (then STOP)
+  - Find the next section of the plan that has no test file; write it, run it, then debug it (then STOP)
+- Choose one small task to do, then STOP. Don't work on mulitple test files at once. Completing one small task well is better than trying to do everything and failing.
+- Make your test code **simple**. Counterintuitively, it can take more effort, thinking, and revision to get a simpler product, so don't be afraid to spend some time simplifying.
