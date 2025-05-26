@@ -27,5 +27,8 @@ words:
   - rxprop
   - setuptools
   - snakecase
+  - unregisters
+  - watchf
+  - watchp
 ignoreWords: []
 import: []
