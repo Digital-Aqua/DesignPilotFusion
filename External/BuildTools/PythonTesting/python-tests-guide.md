@@ -1,3 +1,8 @@
+---
+description: Python testing guide
+globs: '**/Tests/**/*.py,**/Tests/**/PLAN.md'
+alwaysApply: false
+---
 # Python Testing Guide
 
 1. **Kick off with a “Test Plan” doc**
@@ -59,7 +64,7 @@
 
 11. **Static typing failures are test failures**
 
-   * If a static typing test is not present for the package (`test_typing.py`), create it based on `./test_typing_template.py` (relative to this document).
+   * If a static typing test is not present for the package (`test_typing.py`), create it based on `./template_test_typing.py` (relative to this document).
    * The linter is **pylance**, and `test_typing.py` uses **pyright**.
    * You may explicitly ignore linter errors by appending `# type: ignore` to lines where non-strict typing is intended.
 

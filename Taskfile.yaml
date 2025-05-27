@@ -1,0 +1,77 @@
+version: '3'
+
+
+includes:
+  fusion: ./External/BuildTools/Fusion.Taskfile.yaml
+  conda: ./External/BuildTools/Conda.Taskfile.yaml
+
+
+vars:
+  ADDIN_NAME: DesignPilotFusion
+  SOURCE: '{{.TASK_DIR}}/Source'
+  TESTS:
+    - '{{.TASK_DIR}}/External/rxprop'
+    - '{{.TASK_DIR}}/Tests'
+  TARGET: '{{.TASK_DIR}}/.build'
+  BUILD_VERSION: '' # Auto-generated if not set.
+  DEBUG: false      # Whether to build a debug-mode add-in.
+
+
+tasks:
+
+
+  default:
+    desc: build-all
+    cmds: [ task: build-all ]
+
+
+  dev-setup:
+    desc: Sets up the development environment.
+    cmds:
+      - task: fusion:pin-python
+      - task: fusion:copy-deps
+      - task: conda:update-file
+        vars: { ENV_FILE: '{{.ITEM}}' }
+        for:
+          - environment.yaml
+          - External/BuildTools/PythonTesting/environment.yaml
+          - External/rxprop/environment.yaml
+
+
+  clean:
+    desc: Cleans the build directory.
+    cmds:
+      - rm -rf "{{.TARGET}}"
+
+
+  build:
+    desc: Builds the add-in.
+    cmds:
+      - task: fusion:build-addin
+        vars:
+          NAME: '{{.ADDIN_NAME}}'
+          PACKAGE_DIRS:
+            - '{{.SOURCE}}/Packages'
+            - '{{.TASK_DIR}}/External/rxprop'
+
+
+  bundle:
+    desc: Bundles the add-in into a zip file.
+    cmds:
+      - >-
+        zip -r '{{.TARGET}}/{{.ADDIN_NAME}}.zip'
+          '{{.TARGET}}/{{.ADDIN_NAME}}'
+
+
+  test:
+    desc: Runs all tests.
+    cmds:
+      - pytest
+
+
+  build-all:
+    desc: "Cleans, builds, and bundles the add-in."
+    cmds:
+      - task: clean
+      - task: build
+      - task: bundle

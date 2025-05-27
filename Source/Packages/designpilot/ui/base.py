@@ -15,13 +15,13 @@ class ViewModel(object):
         super().__init__(**kwargs)
 
     @value
-    def css_classes(self) -> list[str]:
-        return [self._default_css_class()]
+    def styling(self) -> list[str]:
+        return [self._default_class_style()]
 
     @classmethod
     @cache
-    def _default_css_class(cls) -> str:
-        return snakecase(cls.__name__)
+    def _default_class_style(cls) -> str:
+        return snakecase(cls.__qualname__)
 
 
 class ContentVmMixin(ViewModel):

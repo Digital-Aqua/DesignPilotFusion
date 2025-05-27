@@ -17,7 +17,7 @@
 *to do: contributing*
 
 
-## Getting Started
+## Installation
 
 ### Via the Autodesk App Store (Recommended)
 
@@ -39,39 +39,49 @@
 5. Repeat this process to update when new versions are released.
 
 
-### Manual Build & Install (Git Repo)
+### Manual Clone &amp; Build
 
-1. Check you have [git](https://git-scm.com/downloads) and [conda-forge](https://conda-forge.org/download/) installed.
+1. Clone the repository.
 
-2. Open a terminal in the folder where you want to clone the repository.
+2. Install [conda](https://conda-forge.org/download/)
 
-3. Run:
+3. Create a conda development environment.
+
+4. Install [task](https://taskfile.dev/installation/)
+
+5. Run the following commands:
+
 ```bash
 git clone \
     --branch release \
     --depth 1 \
     --recurse-submodules  \
     https://github.com/Digital-Aqua/DesignPilotFusion.git
+cd DesignPilotFusion
+conda create --yes --prefix ./.conda
+conda activate ./.conda
+conda install --yes go-task
+task dev-setup
 ```
-*If you like to live dangerously, change the branch to `main` to get the latest development version.*
 
-4. Set up your development environment with the command:
+6. Build the add-in to the repo's `.build` subfolder with the command:
+
 ```bash
-./build.sh --dev-setup
-```
-This will detect your Fusion installation and copy autocompletion files for your IDE.
-
-5. Build the add-in to the repo's `.build` subfolder with the command:
-```bash
-./build.sh
+task build-all
 ```
 
-6. Open Fusion and go to **Utilities** &rarr; **Scripts and Add-Ins** &rarr; **Add-Ins** Tab &rarr; **My Add-Ins** &rarr; **+**.
+7. Open Fusion and go to **Utilities** &rarr; **Scripts and Add-Ins** &rarr; **Add-Ins** Tab &rarr; **My Add-Ins** &rarr; **+**.
 
-7. Select the folder `<repo>/.build/DesignPilotFusion`.
+8. Select the folder `<repo>/.build/DesignPilotFusion`.
 
-To update to the latest version, run:
+9. Update to the latest version with the commands:
+
 ```bash
 git pull
-./build.sh --clean
+task build-all
 ```
+
+### Development Clone &amp; Build
+
+Follow **Manual Clone &amp; Build** instructions above, replacing `--branch release` with `--branch main` to get the latest development version.
+

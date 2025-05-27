@@ -1,0 +1,10 @@
+version: '3'
+
+vars:
+  GIT_HASH:
+    sh: git rev-parse --short HEAD
+  GIT_DIRTY:
+    sh: >-
+      git status --porcelain | grep -q . && echo 'true' || echo 'false'
+  GIT_HASH_DIRTY: >-
+    '{{.GIT_HASH}}{{ if eq .GIT_DIRTY "true" }}-dirty{{ end }}'

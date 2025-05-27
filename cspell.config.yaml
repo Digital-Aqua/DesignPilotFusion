@@ -9,6 +9,7 @@ words:
   - caseconverter
   - designpilot
   - dpapp
+  - envsubst
   - fcompute
   - fdefault
   - fdel
@@ -27,7 +28,9 @@ words:
   - rxprop
   - setuptools
   - snakecase
+  - Taskfile
   - unregisters
+  - vars
   - watchf
   - watchp
 ignoreWords: []

@@ -1,0 +1,20 @@
+version: 3
+
+
+tasks:
+
+  touch-target:
+    desc: Touches a file, creating its directory if it doesn't exist.
+    requires:
+      vars: [ TARGET ]
+    cmds:
+      - mkdir -p "$( dirname '{{.TARGET}}' )"
+      - touch '{{.TARGET}}'
+  
+  envsubst:
+    desc: Runs envsubst on a file.
+    requires:
+      vars: [ SOURCE, TARGET ]
+    cmds:
+      - task: touch-target
+      - cat '{{.SOURCE}}' | envsubst > '{{.TARGET}}'
