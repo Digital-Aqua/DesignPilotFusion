@@ -1,0 +1,10 @@
+<div
+    class="{{ type_css(vm) }}"
+    onclick="{{ click }}"
+>
+    <h3>{{ vm.title }}</h3>
+    <div><code>{{ vm.id.hex }}</code></div>
+    {%- for message in vm.messages -%}
+        {{- message -}}
+    {%- endfor -%}
+</div>

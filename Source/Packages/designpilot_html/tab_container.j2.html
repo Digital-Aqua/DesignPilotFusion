@@ -1,0 +1,8 @@
+<div class="{{ type_css(vm) }}">
+    {%- for title, tab in vm.tabs.items() -%}
+        <div class="tab">
+            <h2>{{ title }}</h2>
+            {{ tab }}
+        </div>
+    {%- endfor -%}
+</div>

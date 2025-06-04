@@ -14,18 +14,26 @@ words:
   - fdefault
   - fdel
   - Fireable
+  - followlinks
   - fref
   - fromlist
   - fusionbase
   - invalidator
   - invalidators
+  - jobject
+  - kebabcase
+  - keepalive
   - levelno
+  - litellm
   - mypy
   - onclick
+  - pchangenotifier
   - pyright
   - pytest
   - pythonpath
+  - reactivelist
   - rxprop
+  - searchpath
   - setuptools
   - snakecase
   - Taskfile

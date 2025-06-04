@@ -1,12 +1,6 @@
-from functools import cache
-from typing import Any, TypeVar
+from typing import Any, Generic, TypeVar
 
-from caseconverter import snakecase
-
-from rxprop import value
-
-
-TValue = TypeVar("TValue")
+import rxprop as rx
 
 
 class ViewModel(object):
@@ -14,32 +8,37 @@ class ViewModel(object):
     def __init__(self, **kwargs: Any):
         super().__init__(**kwargs)
 
-    @value
-    def styling(self) -> list[str]:
-        return [self._default_class_style()]
+    # @rx.value
+    # def styling(self) -> rx.ReactiveList[str]:
+    #     return rx.ReactiveList([self._default_class_style()])
 
-    @classmethod
-    @cache
-    def _default_class_style(cls) -> str:
-        return snakecase(cls.__qualname__)
+    # @classmethod
+    # @cache
+    # def _default_class_style(cls) -> str:
+    #     return snakecase(cls.__qualname__)
 
 
-class ContentVmMixin(ViewModel):
+_T = TypeVar('_T')
+
+
+class ViewModelRef(Generic[_T], ViewModel):
+    """
+    A view model containing a reference to a model.
+    (The reference is not reactive.)
+    """
+    def __init__(self, model: _T, **kwargs: Any):
+        super().__init__(**kwargs)
+        self._model = model
+
+
+_VM = TypeVar('_VM', bound=ViewModel)
+
+
+class ContentVm(Generic[_VM], ViewModel):
     """ Mixin adding a content property to the view model. """
-    @value
-    def content(self) -> list[ViewModel]:
-        return []
-
-
-class HeaderVmMixin(ViewModel):
-    """ Mixin adding a header property to the view model. """
-    @value
-    def header(self) -> list[ViewModel]:
-        return []
-
-
-class FooterVmMixin(ViewModel):
-    """ Mixin adding a footer property to the view model. """
-    @value
-    def footer(self) -> list[ViewModel]:
-        return []
+    @rx.value
+    def content(self) -> rx.ReactiveList[_VM]:
+        """
+        A sequence of view models that comprise the content of this view model.
+        """
+        return rx.ReactiveList()

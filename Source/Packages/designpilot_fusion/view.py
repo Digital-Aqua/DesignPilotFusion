@@ -1,5 +1,6 @@
 from typing import Any
 
+import rxprop as rx
 from designpilot.ui import ViewModel
 from designpilot_html import View
 
@@ -9,7 +10,7 @@ class FusionView(View):
         super().__init__(root_vm)
 
     async def run(self) -> None:
-        changes = View.html.watch_async(self)
+        changes = rx.watchp(self, FusionView.html)
         async for _ in changes:
             self.on_send(self.html)
 
