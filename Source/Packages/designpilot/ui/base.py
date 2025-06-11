@@ -3,22 +3,17 @@ from typing import Any, Generic, TypeVar
 import rxprop as rx
 
 
+_T = TypeVar('_T')
+
+
 class ViewModel(object):
     """ Base class for view models. """
     def __init__(self, **kwargs: Any):
         super().__init__(**kwargs)
 
-    # @rx.value
-    # def styling(self) -> rx.ReactiveList[str]:
-    #     return rx.ReactiveList([self._default_class_style()])
 
-    # @classmethod
-    # @cache
-    # def _default_class_style(cls) -> str:
-    #     return snakecase(cls.__qualname__)
-
-
-_T = TypeVar('_T')
+class EmptyVm(ViewModel): pass
+empty_vm = EmptyVm()
 
 
 class ViewModelRef(Generic[_T], ViewModel):
@@ -29,6 +24,7 @@ class ViewModelRef(Generic[_T], ViewModel):
     def __init__(self, model: _T, **kwargs: Any):
         super().__init__(**kwargs)
         self._model = model
+        """ The model on which this view model depends. """
 
 
 _VM = TypeVar('_VM', bound=ViewModel)

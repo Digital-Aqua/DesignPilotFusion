@@ -1,0 +1,11 @@
+<div class="{{ type_css(vm) }} {{ 'expanded' if vm.expanded else 'collapsed' }}">
+    <div class="expander-header">
+        <div class="expander-arrow" onclick="{{ vm.toggle }}"></div>
+        {{- vm.title -}}
+    </div>
+    {%- if vm.expanded -%}
+        <div class="expander-content">
+            {{- vm.content -}}
+        </div>
+    {%- endif -%}
+</div>

@@ -1,0 +1,78 @@
+.root-vm {
+    --default-font-family: 'Segoe UI', sans-serif;
+    --default-padding: 12px;
+
+    font-family: var(--default-font-family);
+    font-weight: 400;
+    font-size: 11px;
+    background-color: #f2f2f2;
+    color: #3c3c3c;
+
+    padding: var(--default-padding);
+    gap: var(--default-padding);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--default-font-family);
+    font-weight: 600;
+    color: #333;
+}
+
+.root-vm {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--default-padding);
+}
+
+.chat-vm {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--default-padding);
+}
+
+.conversation-box {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    /*border: 1px solid #cdcdcd;*/
+    background-color: #f9f9f9;
+    padding: var(--default-padding);
+    position: relative;
+}
+
+.conversation-box > * {
+    width: 100%;
+    max-width: 48em;
+    margin: 0 auto;
+}
+
+.chat-history {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    gap: var(--default-padding);
+}
+
+.message-box, .chat-input {
+    border: 1px solid #f2f2f2;
+    padding: calc( var(--default-padding));
+    border-radius: 12px;
+}
+.message-box.role-user, .chat-input {
+    border: 1px solid #cdcdcd;
+    background-color: #f2f2f2;
+    border-top-right-radius: 0;
+}
+.message-box.role-user {
+    margin-left: 25%;
+}
+.message-box.role-assistant {
+    border-top-left-radius: 0;
+}
+
+.message-box > p {
+    margin: 0;
+}

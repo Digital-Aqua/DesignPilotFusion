@@ -1,0 +1,12 @@
+<div class="{{ type_css(vm) }}">
+    <ul class="tab-header">
+        {%- for tab in vm.tabs -%}
+            <li class="{{ 'selected' if vm.selected_tab == tab else '' }}">
+                {{ tab.title }}
+            </li>
+        {%- endfor -%}
+    </ul>
+    <div class="tab-content">
+        {{- vm.selected_tab.content -}}
+    </div>
+</div>

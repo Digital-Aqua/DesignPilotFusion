@@ -13,6 +13,8 @@ words:
   - fcompute
   - fdefault
   - fdel
+  - fhandler
+  - finaliser
   - Fireable
   - followlinks
   - fref

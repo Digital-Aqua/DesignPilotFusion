@@ -6,12 +6,11 @@ import rxprop as rx
 from ..dpapp import DpApp
 from ..conversation import Conversation
 from ..message import Message
-from .base import ViewModel, ViewModelRef
-from .utils import MarkdownString
+from .base import ViewModelRef
+from .basic import MarkdownVm
 
 
 class ChatMessageVm(ViewModelRef[Message]):
-
     @rx.computed
     def role(self) -> str:
         return self._model.merged_message.role
@@ -21,55 +20,66 @@ class ChatMessageVm(ViewModelRef[Message]):
         return self._model.pending
 
     @rx.computed
-    def content(self) -> MarkdownString:
-        return MarkdownString(self._model.merged_message.content or '')
+    def content(self) -> MarkdownVm:
+        return MarkdownVm(self._model.merged_message.content or '')
 
 
-class ChatConversationVm(
-    ViewModelRef[Conversation]
-):
-    def __init__(self, **kwargs: Any):
-        super().__init__(**kwargs)
-
-    @property
-    def id(self) -> UUID:
-        return self._model.id
-
+class ChatConversationVm(ViewModelRef[Conversation]):
     @rx.computed
     def title(self) -> str:
         return self._model.title
 
     @rx.computed
+    def id(self) -> str:
+        return self._model.id.hex
+
+    @rx.computed
     def messages(self) -> Iterable[ChatMessageVm]:
         return [
-            ChatMessageVm(model=m)
-            for m in self._model.messages
+            ChatMessageVm(model=message)
+            for message in self._model.messages
         ]
 
 
-class ChatVm(ViewModel):
-    def __init__(self, app: DpApp, **kwargs: Any):
-        super().__init__(**kwargs)
-        self._app = app
+class ChatVm(ViewModelRef[DpApp]):
+    @rx.computed
+    def app(self) -> DpApp:
+        return self._model
 
     @rx.computed
-    def conversation_ids(self) -> Mapping[UUID, str]:
+    def conversation_map(self) -> Mapping[UUID, str]:
         return {
             c.id: c.title
-            for c in self._app.conversations
+            for c in self._model.conversations
         }
 
     @rx.value
-    def conversation(self) -> ChatConversationVm|None:
-        return None
+    def selected_conversation_id(self) -> UUID:
+        if self._model.conversations:
+            return self._model.conversations[-1].id
+        return UUID(int=0)
 
-    def select_conversation(self, conversation_id: UUID) -> None:
-        for c in self._app.conversations:
-            if c.id == conversation_id:
-                self.conversation = ChatConversationVm(model=c)
-                return
-        self.conversation = None
-    
-    def new_conversation(self) -> None:
-        new_conversation = self._app.create_conversation()
+    @rx.computed
+    def selected_conversation(self) -> ChatConversationVm|None:
+        try:
+            id = self.selected_conversation_id
+            conversation = next(iter(
+                c for c in self._model.conversations
+                if c.id == id
+            ))
+            return ChatConversationVm(model=conversation)
+        except StopIteration:
+            return None
+
+    def new_conversation(self, **__: Any) -> None:
+        new_conversation = self._model.create_conversation()
         self.select_conversation(new_conversation.id)
+
+    def select_conversation(self, conversation_id: UUID|str) -> None:
+        if isinstance(conversation_id, str):
+            conversation_id = UUID(conversation_id)
+        for c in self._model.conversations:
+            if c.id == conversation_id:
+                self.selected_conversation_id = c.id
+                return
+        raise ValueError(f"Conversation {conversation_id} not found")

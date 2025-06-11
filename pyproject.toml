@@ -22,6 +22,7 @@ classifiers = []
 
 [tool.setuptools]
 package-dir = {"" = "Source/Packages"}
+package-data = {"designpilot_html" = ["*.j2.html", "*.css", "*.js"]}
 
 
 [tool.pytest.ini_options]

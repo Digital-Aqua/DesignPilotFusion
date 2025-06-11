@@ -1,7 +1,7 @@
 from rxprop import computed
 from designpilot.ui import ViewModel
 
-from .renderers import render
+from .registry import default_registry
 
 
 class View():
@@ -10,4 +10,6 @@ class View():
     
     @computed
     def html(self) -> str:
-        return ''.join(render(self.root_vm))
+        return ''.join(
+            default_registry.render(self.root_vm)
+        )

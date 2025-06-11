@@ -1,0 +1,32 @@
+<div class="{{ type_css(vm) }}">
+    <div class="toolbar">
+        <h3>
+            {%- if vm.selected_conversation -%}
+                {{ vm.selected_conversation.title }}
+            {%- else -%}
+                Select a conversation or create a new one!
+            {%- endif -%}
+        </h3>
+        <button onclick="{{ vm.new_conversation }}">New</button>
+        <select onchange="{{ vm.select_conversation }}">
+            {%- for id, title in vm.conversation_map.items() -%}
+                <option value="{{ id.hex }}">{{ title }}</option>
+            {%- endfor -%}
+        </select>
+    </div>
+    <div class="conversation-box">
+        <div class="chat-history">
+            {%- if vm.selected_conversation -%}
+                {%- for message in vm.selected_conversation.messages -%}
+                    <div class="message-box md {{ 'pending' if message.pending else '' }} role-{{ message.role }}">
+                        {{- message.content -}}
+                    </div>
+                {%- endfor -%}
+            {%- endif -%}
+        </div>
+        <div class="chat-input">
+            <input type="text" placeholder="Type your message here..." />
+            <button onclick="{{ vm.selected_conversation.submit_prompt }}">Send</button>
+        </div>
+    </div>
+</div>
