@@ -2,11 +2,13 @@
 .cache/
 .venv/
 .conda/
+.task/
 
 __pycache__/
 *.egg-info/
 .pytest_cache/
 .mypy_cache/
+
 
 .env
 Tests/Scratch.ipynb

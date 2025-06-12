@@ -4,6 +4,7 @@ version: '3'
 includes:
   fusion: ./External/BuildTools/Fusion.Taskfile.yaml
   conda: ./External/BuildTools/Conda.Taskfile.yaml
+  venv: ./External/BuildTools/VEnv.Taskfile.yaml
 
 
 vars:
@@ -46,13 +47,32 @@ tasks:
 
   build:
     desc: Builds the add-in.
+    vars:
+      PREFIX: '{{.TARGET}}/venv-deps'
     cmds:
+      - task: venv:create
+        vars:
+          PREFIX: '{{.PREFIX}}'
+      - task: venv:project-install
+        vars:
+          PREFIX: '{{.PREFIX}}'
+          PROJECT: '{{.TASK_DIR}}/External/rxprop'
+      - task: venv:project-install
+        vars:
+          PREFIX: '{{.PREFIX}}'
+          PROJECT: '{{.TASK_DIR}}'
+
       - task: fusion:build-addin
         vars:
-          NAME: '{{.ADDIN_NAME}}'
-          PACKAGE_DIRS:
-            - '{{.SOURCE}}/Packages'
-            - '{{.TASK_DIR}}/External/rxprop'
+          ADDIN_NAME: '{{.ADDIN_NAME}}'
+          SOURCE: '{{.SOURCE}}'
+          TARGET: '{{.TARGET}}'
+          DEBUG: '{{.DEBUG}}'
+          PACKAGE_DIRS: |-
+            {{.SOURCE}}/Packages
+            {{.TASK_DIR}}/External/rxprop/Source
+          PACKAGE_BLACKLIST:
+            - sh: 'cat '
 
 
   bundle:

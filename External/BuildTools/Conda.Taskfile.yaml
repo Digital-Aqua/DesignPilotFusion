@@ -10,19 +10,19 @@ tasks:
   ensure-prefix:
     desc: Ensures the conda prefix is set.
     preconditions:
-      - sh: test -n '{{.CONDA_PREFIX}}'
+      - sh: test -n {{.CONDA_PREFIX | q}}
         msg: "CONDA_PREFIX is not set."
-      - sh: test -d '{{.CONDA_PREFIX}}'
+      - sh: test -d {{.CONDA_PREFIX | q}}
         msg: "CONDA_PREFIX does not exist: {{.CONDA_PREFIX}}"
 
 
   update-file:
     desc: Updates a conda environment from a given environment file (ENV_FILE).
     preconditions:
-      - sh: test -f "{{.ENV_FILE}}"
+      - sh: test -f {{.ENV_FILE | q}}
         msg: "conda-update requires ENV_FILE to be passed."
     cmds:
-      - conda env update --prefix "{{.CONDA_PREFIX}}" --file "{{.ENV_FILE}}"
+      - conda env update --prefix {{.CONDA_PREFIX | q}} --file {{.ENV_FILE | q}}
 
 
   add-python-packages:
@@ -33,21 +33,21 @@ tasks:
       SITE_PACKAGES:
         sh: |
           {
-            echo '{{.CONDA_PREFIX}}/lib/python3.*/site-packages'
+            echo {{.CONDA_PREFIX | q}}/lib/python3.*/site-packages
           } | grep -v '\*' | {
-            while IFS= read -r line; do
-              if [ -f "$line" ]; then
-                echo "$line"
+            while IFS= read -r LINE; do
+              if [ -f "$LINE" ]; then
+                echo "$LINE"
                 break  # Found the first valid file, exit loop
               fi
             done
           }
       PTH_FILE:
-        sh: echo "{{.SITE_PACKAGES}}/$( basename {{.SOURCE}} ).pth"
+        sh: echo {{.SITE_PACKAGES | q}}/{{.SOURCE | base | q}}.pth
     preconditions:
-      - sh: test -d '{{.SOURCE}}'
+      - sh: test -d {{.SOURCE | q}}
         msg: "Source directory does not exist: {{.SOURCE}}"
     cmds:
       - task: files:touch-target
         vars: { TARGET: '{{.PTH_FILE}}' }
-      - echo '{{.SOURCE}}' > '{{.PTH_FILE}}'
+      - echo {{.SOURCE | q}} > {{.PTH_FILE | q}}

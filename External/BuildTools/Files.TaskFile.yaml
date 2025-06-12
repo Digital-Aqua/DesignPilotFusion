@@ -7,14 +7,20 @@ tasks:
     desc: Touches a file, creating its directory if it doesn't exist.
     requires:
       vars: [ TARGET ]
+    status:
+      - test -f {{.TARGET | q}}
     cmds:
-      - mkdir -p "$( dirname '{{.TARGET}}' )"
-      - touch '{{.TARGET}}'
+      - mkdir -p "$( dirname {{.TARGET | q}} )"
+      - touch {{.TARGET | q}}
   
   envsubst:
     desc: Runs envsubst on a file.
     requires:
-      vars: [ SOURCE, TARGET ]
+      vars: [ SOURCE, TARGET, ENV_CMD ]
     cmds:
       - task: touch-target
-      - cat '{{.SOURCE}}' | envsubst > '{{.TARGET}}'
+        vars: { TARGET: '{{.TARGET}}' }
+      - cmd: >-
+          cat {{.SOURCE | q}}
+          | {{.ENV_CMD}} envsubst
+          > {{.TARGET | q}}

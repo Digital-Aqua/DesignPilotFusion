@@ -24,26 +24,26 @@ tasks:
       FUSION_PYTHON_AUTO:
         sh: |
           {
-            echo '{{.FUSION_PYTHON}}'
+            echo {{.FUSION_PYTHON | q}}
             echo /*/Users/*/AppData/Local/Autodesk/webdeploy/production/*/Python/python.exe
             echo /mnt/*/Users/*/AppData/Local/Autodesk/webdeploy/production/*/Python/python.exe
             which python3
           } | grep -v '\*' | {
-            while IFS= read -r line; do
-              if [ -f "$line" ]; then
-                echo "$line"
+            while IFS= read -r LINE; do
+              if [ -f "$LINE" ]; then
+                echo "$LINE"
                 break  # Found the first valid file, exit loop
               fi
             done
           }
       PYTHON_VERSION:
         sh: |
-          '{{.FUSION_PYTHON_AUTO}}' --version | sed 's/Python //'
+          {{.FUSION_PYTHON_AUTO | q}} --version | sed 's/Python //'
 
     preconditions:
-      - sh: test -f '{{.FUSION_PYTHON_AUTO}}'
+      - sh: test -f {{.FUSION_PYTHON_AUTO | q}}
         msg: "Could not find Fusion's Python executable at: {{.FUSION_PYTHON_AUTO}}"
-      - sh: test -n '{{.PYTHON_VERSION}}'
+      - sh: test -n {{.PYTHON_VERSION | q}}
         msg: "Could not find Fusion's Python version."
     deps:
       - conda:ensure-prefix
@@ -51,8 +51,8 @@ tasks:
     cmds:
       - task: files:touch-target
         vars: { TARGET: '{{.PINNED_FILE}}' }
-      - sed -i '/^\s*python ==[0-9\.]\+\s*$/d' '{{.PINNED_FILE}}'
-      - echo 'python =={{.PYTHON_VERSION}}' >> '{{.PINNED_FILE}}'
+      - sed -i '/^\s*python ==[0-9\.]\+\s*$/d' {{.PINNED_FILE | q}}
+      - echo 'python =={{.PYTHON_VERSION}}' >> {{.PINNED_FILE | q}}
       - echo 'Python version pinned to {{.PYTHON_VERSION}}'
 
 
@@ -64,72 +64,148 @@ tasks:
       FUSION_DEPS_AUTO:
         sh: |
           {
-            echo "{{.FUSION_DEPS}}"
+            echo {{.FUSION_DEPS | q}}
             echo /*/Users/*'/AppData/Roaming/Autodesk/Autodesk Fusion 360/API/Python/defs'
             echo /mnt/*/Users/*'/AppData/Roaming/Autodesk/Autodesk Fusion 360/API/Python/defs'
           } | grep -v '\*' | {
-            while IFS= read -r line; do
-              if [ -d "$line" ]; then # Check for directory for stubs
-                echo "$line"
+            while IFS= read -r LINE; do
+              if [ -d "$LINE" ]; then # Check for directory for stubs
+                echo "$LINE"
                 break
               fi
             done
           }
     preconditions:
-      - sh: test -d "{{.FUSION_DEPS_AUTO}}"
+      - sh: test -d {{.FUSION_DEPS_AUTO | q}}
         msg: "Could not find Fusion's Python stubs at: {{.FUSION_DEPS_AUTO}}"
     cmds:
       - mkdir -p .cache
-      - cp -rf "{{.FUSION_DEPS_AUTO}}" .cache
+      - cp -rf {{.FUSION_DEPS_AUTO | q}} .cache
 
 
   build-addin:
     desc: Builds the add-in.
     requires:
-      vars: [ NAME, SOURCE, TARGET, PACKAGE_DIRS ]
+      vars: [ ADDIN_NAME, SOURCE, TARGET, DEBUG, PACKAGE_DIRS, PACKAGE_BLACKLIST ]
     vars:
-      TARGET: '{{.TARGET}}/{{.NAME}}'
+      TARGET: '{{.TARGET}}/{{.ADDIN_NAME}}'
       BUILD_VERSION: '{{if .BUILD_VERSION}}{{.BUILD_VERSION}}{{else}}{{.GIT_HASH_DIRTY}}{{end}}'
     preconditions:
-      - sh: test -d '{{.SOURCE}}'
+      - sh: test -d {{.SOURCE | q}}
         msg: "Source directory does not exist: {{.SOURCE}}"
     cmds:
       - task: _build-manifest
+        vars:
+          ADDIN_NAME: '{{.ADDIN_NAME}}'
+          SOURCE: '{{.SOURCE}}'
+          TARGET: '{{.TARGET}}'
+          BUILD_VERSION: '{{.BUILD_VERSION}}'
+          DEBUG: '{{.DEBUG}}'
       - task: _copy-main-scripts
-      - for: PACKAGE_DIRS
-        cmd: cp -rf '{{.ITEM}}' '{{.TARGET}}/Packages'
+        vars:
+          ADDIN_NAME: '{{.ADDIN_NAME}}'
+          SOURCE: '{{.SOURCE}}'
+          TARGET: '{{.TARGET}}'
+      - task: _copy-packages
+        vars:
+          SOURCES: '{{.PACKAGE_DIRS}}'
+          TARGET: '{{.TARGET}}/Packages'
 
 
   _build-manifest:
     desc: Builds the add-in manifest.
     requires:
       vars: [
-        NAME, SOURCE, TARGET, BUILD_VERSION,
+        ADDIN_NAME, SOURCE, TARGET, BUILD_VERSION,
         { name: DEBUG, enum: [ true, false ] }
       ]
-    sources: 
+    vars:
+      TARGET: '{{.TARGET}}/{{.ADDIN_NAME}}.manifest'
+    sources:
       - '{{.SOURCE}}/manifest.template'
+    status:
+      - test -f {{.TARGET | q}}
     cmds:
       - for: sources
-        env:
-          BUILD_VERSION: '{{.BUILD_VERSION}}'
-          IS_DEBUG: '{{.DEBUG}}'
-          NOT_DEBUG: '{{not .DEBUG}}'
+        task: files:envsubst
         vars:
           SOURCE: '{{.ITEM}}'
-          TARGET: '{{.TARGET}}/{{.NAME}}.manifest'
-        task: files:envsubst
+          TARGET: '{{.TARGET}}'
+          ENV_CMD: >-
+            BUILD_VERSION='{{.BUILD_VERSION}}'
+            IS_DEBUG='{{if .DEBUG}}true{{else}}false{{end}}'
+            NOT_DEBUG='{{if .DEBUG}}false{{else}}true{{end}}'
 
 
   _copy-main-scripts:
     desc: Copies the main add-in scripts to the target directory.
     requires:
-      vars: [ NAME, SOURCE, TARGET ]
+      vars: [ ADDIN_NAME, SOURCE, TARGET ]
     sources: [
-      '{{.SOURCE}}/{{.NAME}}.py',
+      '{{.SOURCE}}/{{.ADDIN_NAME}}.py',
       '{{.SOURCE}}/config.py',
     ]
+    status:
+      - test -f {{.TARGET | q}}/{{.ADDIN_NAME | q}}.py
+      - test -f {{.TARGET | q}}/config.py
     cmds:
       - for: sources
-        cmd: cp -f '{{.ITEM}}' '{{.TARGET}}'
+        cmd: cp -f {{.ITEM | q}} {{.TARGET | q}}
 
+
+  _create_venv:
+    desc: Creates and populates a virtual environment for package management.
+    requires:
+      vars: [ TARGET ]
+    cmds:
+      - task: conda:ensure-prefix
+      - python -m venv {{.TARGET | q}}/dependencies
+      - |-
+        (
+          source {{.TARGET | q}}/dependencies/bin/activate
+          pip install -r {{.SOURCE | q}}/requirements.txt
+        )
+
+
+  _copy-packages:
+    desc: Copies packages to the target directory.
+    requires:
+      vars: [ SOURCES, TARGET ]
+    cmds:
+      - for: { var: SOURCES, split: '\n', as: SOURCE }
+        task: _copy-packages-from
+        vars:
+          SOURCE: '{{.SOURCE}}'
+          TARGET: '{{.TARGET}}'
+
+
+  _copy-packages-from:
+    desc: Copies packages from a single source directory.
+    requires:
+      vars: [ SOURCE, TARGET ]
+    vars:
+      CANDIDATES:
+        sh: |-
+          {{- range .SOURCE | splitList "\n" -}}
+          ls -1 "{{.}}"
+          {{end -}}
+    cmds:
+      - echo 'Source:' {{.SOURCE | q}}
+      - echo 'Candidates:' {{.CANDIDATES | q}}
+      - for: sources
+        task: _copy-package
+        vars:
+          PACKAGE: '{{.ITEM}}'
+          TARGET: '{{.TARGET}}'
+
+
+  _copy-package:
+    desc: Copies a single package (file or directory) to the target directory.
+    requires:
+      vars: [ PACKAGE, TARGET ]
+    sources:
+      - '{{.PACKAGE}}'
+    cmds:
+      - echo 'Package:' {{.PACKAGE | q}}
+      - for: sources
+        cmd: echo cp -rf {{.ITEM | q}} {{.TARGET | q}}

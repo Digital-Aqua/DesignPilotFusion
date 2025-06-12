@@ -1,0 +1,36 @@
+version: '3'
+
+
+tasks:
+
+  create:
+    requires:
+      vars: [ PREFIX ]
+    cmds:
+      - python -m venv {{.PREFIX | q}}
+      - |-
+        echo '(
+          echo "START";
+          . {{.PREFIX | q}}/bin/activate;
+          echo "OK"
+        )'
+  
+  project-install:
+    requires:
+      vars: [ PREFIX, PROJECT ]
+    cmds:
+      - |-
+        (
+          . {{.PREFIX | q}}/bin/activate
+          pip install -e {{.PROJECT | q}}
+        ) 2>&1
+
+  pip-install:
+    requires:
+      vars: [ PREFIX, PACKAGE ]
+    cmds:
+      - |-
+        (
+          . {{.PREFIX | q}}/bin/activate
+          pip install {{.PACKAGE | q}}
+        ) 2>&1
